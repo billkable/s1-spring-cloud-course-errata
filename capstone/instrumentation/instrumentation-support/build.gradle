@@ -1,0 +1,10 @@
+dependencies {
+    api "org.aspectj:aspectjrt:$aspectJVersion"
+    api "org.aspectj:aspectjweaver:$aspectJVersion"
+    api "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+    api "org.slf4j:slf4j-api:$slf4jVersion"
+    api "org.springframework.boot:spring-boot-actuator:$springBootVersion"
+    api "io.micrometer:micrometer-core:$micrometerVersion"
+    api "org.springframework:spring-web:$springVersion"
+    api "org.springframework:spring-context:$springVersion"
+}

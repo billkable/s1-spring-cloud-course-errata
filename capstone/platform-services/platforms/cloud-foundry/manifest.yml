@@ -1,0 +1,15 @@
+---
+applications:
+  - name: tracker-registration
+    buildpacks:
+      - java_buildpack
+    memory: 512M
+    disk_quota: 512M
+    instances: 1
+    stack: cflinuxfs3
+    healthcheck-type: port
+    timeout: 30
+    routes:
+      - route: tracker-registration-bkable.cfapps.io
+    env:
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ }, memory_calculator: { stack_threads: 25 } }'

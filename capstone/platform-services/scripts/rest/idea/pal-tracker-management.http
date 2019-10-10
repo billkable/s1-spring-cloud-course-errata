@@ -1,0 +1,95 @@
+# Pal Tracker Actuator Requests
+
+## Management
+
+### Enable Timesheets Controller
+
+POST {{timesheets-server}}/actuator/timesheets-controller-status
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Response status is not 204");
+        client.global.set("user-id", response.body.id)
+    });
+%}
+
+### Disable Timesheets Controller
+
+DELETE {{timesheets-server}}/actuator/timesheets-controller-status
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Response status is not 204");
+        client.global.set("user-id", response.body.id)
+    });
+%}
+
+### Enable Timesheets Repository
+
+POST {{timesheets-server}}/actuator/timesheets-repository-status
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Response status is not 204");
+        client.global.set("user-id", response.body.id)
+    });
+%}
+
+### Disable Timesheets Repository
+
+DELETE {{timesheets-server}}/actuator/timesheets-repository-status
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Response status is not 204");
+        client.global.set("user-id", response.body.id)
+    });
+%}
+
+
+### Enable Project Controller
+
+POST {{registration-server}}/actuator/project-controller-status
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Response status is not 204");
+        client.global.set("user-id", response.body.id)
+    });
+%}
+
+### Disable Project Controller
+
+DELETE {{registration-server}}/actuator/project-controller-status
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Response status is not 204");
+        client.global.set("user-id", response.body.id)
+    });
+%}
+
+### Enable Project Repository
+
+POST {{registration-server}}/actuator/project-repository-status
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Response status is not 204");
+        client.global.set("user-id", response.body.id)
+    });
+%}
+
+### Disable Project Repository
+
+DELETE {{registration-server}}/actuator/project-repository-status
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Response status is not 204");
+        client.global.set("user-id", response.body.id)
+    });
+%}
+
+###
+

@@ -1,0 +1,106 @@
+# Pal Tracker Flow REST HTTP Requests
+
+## Create and Verify User
+
+### Register New User
+
+POST {{registration-server}}/registration
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Pete"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 201, "Response status is not 201");
+        client.global.set("user-id", response.body.id)
+    });
+%}
+
+### Get User by Id
+
+GET {{registration-server}}/users/{{user-id}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Get Accounts by Owner Id
+
+GET {{registration-server}}/accounts?ownerId={{user-id}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.global.set("account-id",response.body[0].id)
+    });
+%}
+
+
+###
+## Create and Verify Project
+
+### Add New Project
+
+POST {{registration-server}}/projects
+Content-Type: application/json
+Accept: application/json
+
+{"name": "Basket Weaving", "accountId": {{account-id}}}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 201, "Response status is not 201");
+        client.global.set("project-id", response.body.id)
+    });
+%}
+
+### Get Projects by Account Id
+
+GET {{registration-server}}/projects?accountId={{account-id}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+
+## Create and Verify Time Entry
+
+### Add New Time Entry
+
+POST {{timesheets-server}}/time-entries
+Content-Type: application/json
+Accept: application/json
+
+{"projectId": {{project-id}}, "userId": {{user-id}}, "date": "2015-05-17", "hours": 6}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 201, "Response status is not 201");
+    });
+%}
+
+
+### Get Time Entries by User Id
+
+GET {{timesheets-server}}/time-entries?userId={{user-id}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+###
+

@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(':components:rest-support')
+    implementation project(':components:users')
+}
+

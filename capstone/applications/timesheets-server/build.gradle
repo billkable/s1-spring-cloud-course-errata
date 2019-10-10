@@ -1,0 +1,8 @@
+apply from: "../server.gradle"
+
+dependencies {
+    implementation project(':components:timesheets')
+    implementation project(':instrumentation:timesheets-instrumentation')
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+    implementation 'org.springframework.retry:spring-retry'
+}

@@ -1,0 +1,186 @@
+# Chaos HTTP Requests for Registration Server
+
+## Base Requests
+
+### Enable Chaos
+POST {{timesheets-server}}/actuator/chaosmonkey/enable
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Get Assault Config
+GET {{timesheets-server}}/actuator/chaosmonkey/assaults
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Set Assault Config
+POST {{timesheets-server}}/actuator/chaosmonkey/assaults
+Content-Type: application/json
+
+{
+    "level": 1,
+    "latencyRangeStart": 50,
+    "latencyRangeEnd": 75,
+    "latencyActive": true,
+    "exceptionsActive": false,
+    "exception": {
+        "type": null,
+        "arguments": null
+    },
+    "killApplicationActive": false,
+    "watchedCustomServices": null
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Get Status
+GET {{timesheets-server}}/actuator/chaosmonkey/status
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Disable Chaos
+POST {{timesheets-server}}/actuator/chaosmonkey/disable
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Assault Scenarios
+
+### Set Low Latency
+POST {{timesheets-server}}/actuator/chaosmonkey/assaults
+Content-Type: application/json
+
+{
+    "level": 1,
+    "latencyRangeStart": 50,
+    "latencyRangeEnd": 75,
+    "latencyActive": true,
+    "killApplicationActive": false,
+    "exceptionsActive": false
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Set Medium Latency
+POST {{timesheets-server}}/actuator/chaosmonkey/assaults
+Content-Type: application/json
+
+{
+  "level": 1,
+  "latencyRangeStart": 500,
+  "latencyRangeEnd": 750,
+  "latencyActive": true,
+  "killApplicationActive": false,
+  "exceptionsActive": false
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Set High Latency
+POST {{timesheets-server}}/actuator/chaosmonkey/assaults
+Content-Type: application/json
+
+{
+  "level": 1,
+  "latencyRangeStart": 1000,
+  "latencyRangeEnd": 3000,
+  "latencyActive": true,
+  "killApplicationActive": false,
+  "exceptionsActive": false
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Set High Latency - Throw Repository Exceptions
+POST {{timesheets-server}}/actuator/chaosmonkey/assaults
+Content-Type: application/json
+
+{
+  "level": 1,
+  "latencyRangeStart": 1000,
+  "latencyRangeEnd": 3000,
+  "latencyActive": true,
+  "killApplicationActive": false,
+  "exceptionsActive": true,
+  "exception": {
+    "type": "io.pivotal.pal.tracker.timesheets.repository.exceptions.TimeEntryRepositoryFatalException"
+  }
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Set High Latency - Throw Controller Exceptions
+POST {{timesheets-server}}/actuator/chaosmonkey/assaults
+Content-Type: application/json
+
+{
+  "level": 1,
+  "latencyRangeStart": 1000,
+  "latencyRangeEnd": 3000,
+
+  "latencyActive": true,
+  "killApplicationActive": false,
+  "exceptionsActive": true,
+  "exception": {
+    "type": "io.pivotal.pal.tracker.timesheets.controller.exceptions.TimeEntryControllerFatalException"
+  }
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Set High Latency - Kill Instance
+POST {{timesheets-server}}/actuator/chaosmonkey/assaults
+Content-Type: application/json
+
+{
+  "level": 1,
+  "latencyRangeStart": 1000,
+  "latencyRangeEnd": 3000,
+  "latencyActive": true,
+  "killApplicationActive": true,
+  "exceptionsActive": false
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}

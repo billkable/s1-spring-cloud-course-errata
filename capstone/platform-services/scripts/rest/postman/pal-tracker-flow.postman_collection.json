@@ -1,0 +1,4153 @@
+{
+	"info": {
+		"_postman_id": "37f9201a-57f5-4408-a946-5c163accaa39",
+		"name": "pal-tracker-flow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Primary Flow",
+			"item": [
+				{
+					"name": "Create and Verify User",
+					"item": [
+						{
+							"name": "Register New User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "44b740b6-f2ab-4102-bfd4-9206e1427525",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable(\"userId\", jsonData.id);",
+											"",
+											"tests[\"userId is valid\"] = jsonData.userId !== null;",
+											"tests[\"Status code is 201\"] = responseCode.code === 201;"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "0cdc779a-f5f2-444f-892b-a14ec14d21f4",
+										"exec": [
+											"var userNameSuffix = new Date().getTime()",
+											"var userName = pm.environment.get(\"userNamePrefix\") + \"-\" + userNameSuffix;",
+											"postman.setEnvironmentVariable(\"userName\",userName)",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\": \"{{userName}}\"}"
+								},
+								"url": {
+									"raw": "{{registration-server}}/registration",
+									"host": [
+										"{{registration-server}}"
+									],
+									"path": [
+										"registration"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User By Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "22898cc2-729a-488c-9ac4-01d6a808be6f",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"tests[\"userId is valid\"] = jsonData.userId !== null;",
+											"tests[\"Status code is 200\"] = responseCode.code === 200;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{registration-server}}/users/{{userId}}",
+									"host": [
+										"{{registration-server}}"
+									],
+									"path": [
+										"users",
+										"{{userId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Accounts By Owner Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "99e62c1b-9beb-493e-bd18-6ac6ec5c2af9",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable(\"accountId\", jsonData[0].id);",
+											"",
+											"tests[\"accountId is valid\"] = jsonData.accountId !== null;",
+											"tests[\"Status code is 200\"] = responseCode.code === 200;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{registration-server}}/accounts?ownerId={{userId}}",
+									"host": [
+										"{{registration-server}}"
+									],
+									"path": [
+										"accounts"
+									],
+									"query": [
+										{
+											"key": "ownerId",
+											"value": "{{userId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Create and Verify Project",
+					"item": [
+						{
+							"name": "Add New Project",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9c8998a2-8ea7-42ae-bcaa-df64895ef1a8",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable(\"projectId\", jsonData.id);",
+											"",
+											"tests[\"projectId is valid\"] = jsonData.projectId !== null;",
+											"tests[\"Status code is 201\"] = responseCode.code === 201;"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "91be115d-3bd4-4e57-9c8d-8b2a32598e3c",
+										"exec": [
+											"var projectNameSuffix = new Date().getTime();",
+											"var projectName = pm.environment.get(\"projectNamePrefix\") + \"-\" + projectNameSuffix;",
+											"postman.setEnvironmentVariable(\"projectName\",projectName)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\": \"{{projectName}}\", \"accountId\": {{accountId}} }"
+								},
+								"url": {
+									"raw": "{{registration-server}}/projects",
+									"host": [
+										"{{registration-server}}"
+									],
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Projects By Account Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bef64a20-a517-4161-9b9b-e8d2e6be9f52",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"",
+											"tests[\"Status code is 200\"] = responseCode.code === 200;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{registration-server}}/projects?accountId={{accountId}}",
+									"host": [
+										"{{registration-server}}"
+									],
+									"path": [
+										"projects"
+									],
+									"query": [
+										{
+											"key": "accountId",
+											"value": "{{accountId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Create and Verify Time Entry",
+					"item": [
+						{
+							"name": "Add New Time Entry",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7be4977d-eda5-4b68-b2c4-f656a8b718cc",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable(\"timeEntryId\", jsonData.id);",
+											"",
+											"tests[\"timeEntryId is valid\"] = jsonData.timeEntryId !== null;",
+											"tests[\"Status code is 201\"] = responseCode.code === 201;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"projectId\": {{projectId}}, \"userId\": {{userId}}, \"date\": \"2015-05-17\", \"hours\": 6}"
+								},
+								"url": {
+									"raw": "{{timesheets-server}}/time-entries",
+									"host": [
+										"{{timesheets-server}}"
+									],
+									"path": [
+										"time-entries"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Time Entries By User Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5274d142-a23b-4971-9714-98e166ab7f61",
+										"exec": [
+											"tests[\"Status code is 200\"] = responseCode.code === 200;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{timesheets-server}}/time-entries?userId={{userId}}",
+									"host": [
+										"{{timesheets-server}}"
+									],
+									"path": [
+										"time-entries"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "{{userId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "cbbd4907-7ccc-4841-a03b-d565ebc0905f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "41c8aa00-8168-493e-a13b-c3f53f401037",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Management",
+			"item": [
+				{
+					"name": "Timesheets Server",
+					"item": [
+						{
+							"name": "Chaos Monkey Base Requests",
+							"item": [
+								{
+									"name": "Enable Chaos",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/chaosmonkey/enable",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"enable"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Assault Config",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set Assault Config",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 50,\n    \"latencyRangeEnd\": 75,\n    \"latencyActive\": true,\n    \"exceptionsActive\": false,\n    \"exception\": {\n        \"type\": null,\n        \"arguments\": null\n    },\n    \"killApplicationActive\": false,\n    \"watchedCustomServices\": null\n}"
+										},
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Status",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/chaosmonkey/status",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"status"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Disable Chaos",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/chaosmonkey/disable",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"disable"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Assault Scenarios",
+							"item": [
+								{
+									"name": "Set Low Latency",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 50,\n    \"latencyRangeEnd\": 75,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+										},
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set Medium Latency",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 500,\n    \"latencyRangeEnd\": 750,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+										},
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set High Latency",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1000,\n    \"latencyRangeEnd\": 3000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+										},
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set High Latency - Throw Repository Exceptions",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1000,\n    \"latencyRangeEnd\": 3000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": true,\n    \"exception\": {\n        \"type\": \"io.pivotal.pal.tracker.timesheets.repository.exceptions.TimeEntryRepositoryFatalException\"\n    }\n}"
+										},
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set High Latency - Throw Controller Exceptions",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1000,\n    \"latencyRangeEnd\": 3000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": true,\n    \"exception\": {\n        \"type\": \"io.pivotal.pal.tracker.timesheets.controller.exceptions.TimeEntryControllerFatalException\"\n    }\n}"
+										},
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set High Latency - Kill Instance",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1000,\n    \"latencyRangeEnd\": 3000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": true,\n    \"exceptionsActive\": false\n}"
+										},
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Actuator Management",
+							"item": [
+								{
+									"name": "Enable Timesheets Controller",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/timesheets-controller-status",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"timesheets-controller-status"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Disable Timesheets Controller",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/timesheets-controller-status",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"timesheets-controller-status"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Enable Timesheets Repository",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/timesheets-repository-status",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"timesheets-repository-status"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Disable Timesheets Repository",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{timesheets-server}}/actuator/timesheets-repository-status",
+											"host": [
+												"{{timesheets-server}}"
+											],
+											"path": [
+												"actuator",
+												"timesheets-repository-status"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Registration Server",
+					"item": [
+						{
+							"name": "Chaos Monkey Base Requests",
+							"item": [
+								{
+									"name": "Enable Chaos",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{registration-server}}/actuator/chaosmonkey/enable",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"enable"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Assault Config",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set Assault Config",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 50,\n    \"latencyRangeEnd\": 75,\n    \"latencyActive\": true,\n    \"exceptionsActive\": false,\n    \"exception\": {\n        \"type\": null,\n        \"arguments\": null\n    },\n    \"killApplicationActive\": false,\n    \"watchedCustomServices\": null\n}"
+										},
+										"url": {
+											"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get Status",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{registration-server}}/actuator/chaosmonkey/status",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"status"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Disable Chaos",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{registration-server}}/actuator/chaosmonkey/disable",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"disable"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Assault Scenarios",
+							"item": [
+								{
+									"name": "Set Low Latency",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 50,\n    \"latencyRangeEnd\": 75,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+										},
+										"url": {
+											"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set Medium Latency",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 500,\n    \"latencyRangeEnd\": 750,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+										},
+										"url": {
+											"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set High Latency",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1000,\n    \"latencyRangeEnd\": 3000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+										},
+										"url": {
+											"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set High Latency - Throw Repository Exceptions",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1000,\n    \"latencyRangeEnd\": 3000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": true,\n    \"exception\": {\n        \"type\": \"io.pivotal.pal.tracker.projects.repository.exceptions.ProjectRepositoryFatalException\"\n    }\n}"
+										},
+										"url": {
+											"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set High Latency - Throw Controller Exceptions",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1000,\n    \"latencyRangeEnd\": 3000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": true,\n    \"exception\": {\n        \"type\": \"io.pivotal.pal.tracker.projects.controller.exceptions.ProjectControllerFatalException\"\n    }\n}"
+										},
+										"url": {
+											"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set Simulate Stuck Threads",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 99999,\n    \"latencyRangeEnd\": 100000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+										},
+										"url": {
+											"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Set High Latency - Kill Instance",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1000,\n    \"latencyRangeEnd\": 3000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": true,\n    \"exceptionsActive\": false\n}"
+										},
+										"url": {
+											"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"chaosmonkey",
+												"assaults"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Actuator Management",
+							"item": [
+								{
+									"name": "Enable Project Controller",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{registration-server}}/actuator/project-controller-status",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"project-controller-status"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Disable Project Controller",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{registration-server}}/actuator/project-controller-status",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"project-controller-status"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Enable Project Repository",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{registration-server}}/actuator/project-repository-status",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"project-repository-status"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Disable Project Repository",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{registration-server}}/actuator/project-repository-status",
+											"host": [
+												"{{registration-server}}"
+											],
+											"path": [
+												"actuator",
+												"project-repository-status"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Labs",
+			"item": [
+				{
+					"name": "Spring Cloud",
+					"item": [
+						{
+							"name": "Introduction",
+							"item": [
+								{
+									"name": "Distributed Application",
+									"item": [
+										{
+											"name": "Create and Verify User",
+											"item": [
+												{
+													"name": "Register New User",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"id": "44b740b6-f2ab-4102-bfd4-9206e1427525",
+																"exec": [
+																	"var jsonData = JSON.parse(responseBody);",
+																	"postman.setEnvironmentVariable(\"userId\", jsonData.id);",
+																	"",
+																	"tests[\"userId is valid\"] = jsonData.userId !== null;",
+																	"tests[\"Status code is 201\"] = responseCode.code === 201;"
+																],
+																"type": "text/javascript"
+															}
+														},
+														{
+															"listen": "prerequest",
+															"script": {
+																"id": "0cdc779a-f5f2-444f-892b-a14ec14d21f4",
+																"exec": [
+																	"var userNameSuffix = new Date().getTime()",
+																	"var userName = pm.environment.get(\"userNamePrefix\") + \"-\" + userNameSuffix;",
+																	"postman.setEnvironmentVariable(\"userName\",userName)",
+																	""
+																],
+																"type": "text/javascript"
+															}
+														}
+													],
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\"name\": \"{{userName}}\"}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/registration",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"registration"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Get User By Id",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"id": "22898cc2-729a-488c-9ac4-01d6a808be6f",
+																"exec": [
+																	"var jsonData = JSON.parse(responseBody);",
+																	"",
+																	"tests[\"userId is valid\"] = jsonData.userId !== null;",
+																	"tests[\"Status code is 200\"] = responseCode.code === 200;"
+																],
+																"type": "text/javascript"
+															}
+														}
+													],
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/users/{{userId}}",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"users",
+																"{{userId}}"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Get Accounts By Owner Id",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"id": "99e62c1b-9beb-493e-bd18-6ac6ec5c2af9",
+																"exec": [
+																	"var jsonData = JSON.parse(responseBody);",
+																	"postman.setEnvironmentVariable(\"accountId\", jsonData[0].id);",
+																	"",
+																	"tests[\"accountId is valid\"] = jsonData.accountId !== null;",
+																	"tests[\"Status code is 200\"] = responseCode.code === 200;"
+																],
+																"type": "text/javascript"
+															}
+														}
+													],
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/accounts?ownerId={{userId}}",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"accounts"
+															],
+															"query": [
+																{
+																	"key": "ownerId",
+																	"value": "{{userId}}"
+																}
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										},
+										{
+											"name": "Create and Verify Project",
+											"item": [
+												{
+													"name": "Add New Project",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"id": "9c8998a2-8ea7-42ae-bcaa-df64895ef1a8",
+																"exec": [
+																	"var jsonData = JSON.parse(responseBody);",
+																	"postman.setEnvironmentVariable(\"projectId\", jsonData.id);",
+																	"",
+																	"tests[\"projectId is valid\"] = jsonData.projectId !== null;",
+																	"tests[\"Status code is 201\"] = responseCode.code === 201;"
+																],
+																"type": "text/javascript"
+															}
+														},
+														{
+															"listen": "prerequest",
+															"script": {
+																"id": "91be115d-3bd4-4e57-9c8d-8b2a32598e3c",
+																"exec": [
+																	"var projectNameSuffix = new Date().getTime();",
+																	"var projectName = pm.environment.get(\"projectNamePrefix\") + \"-\" + projectNameSuffix;",
+																	"postman.setEnvironmentVariable(\"projectName\",projectName)"
+																],
+																"type": "text/javascript"
+															}
+														}
+													],
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\"name\": \"{{projectName}}\", \"accountId\": {{accountId}} }"
+														},
+														"url": {
+															"raw": "{{registration-server}}/projects",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"projects"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Get Projects By Account Id",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"id": "bef64a20-a517-4161-9b9b-e8d2e6be9f52",
+																"exec": [
+																	"var jsonData = JSON.parse(responseBody);",
+																	"",
+																	"tests[\"Status code is 200\"] = responseCode.code === 200;"
+																],
+																"type": "text/javascript"
+															}
+														}
+													],
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/projects?accountId={{accountId}}",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"projects"
+															],
+															"query": [
+																{
+																	"key": "accountId",
+																	"value": "{{accountId}}"
+																}
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										},
+										{
+											"name": "Create and Verify Time Entry",
+											"item": [
+												{
+													"name": "Add New Time Entry",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"id": "7be4977d-eda5-4b68-b2c4-f656a8b718cc",
+																"exec": [
+																	"var jsonData = JSON.parse(responseBody);",
+																	"postman.setEnvironmentVariable(\"timeEntryId\", jsonData.id);",
+																	"",
+																	"tests[\"timeEntryId is valid\"] = jsonData.timeEntryId !== null;",
+																	"tests[\"Status code is 201\"] = responseCode.code === 201;"
+																],
+																"type": "text/javascript"
+															}
+														}
+													],
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\"projectId\": {{projectId}}, \"userId\": {{userId}}, \"date\": \"2015-05-17\", \"hours\": 6}"
+														},
+														"url": {
+															"raw": "{{timesheets-server}}/time-entries",
+															"host": [
+																"{{timesheets-server}}"
+															],
+															"path": [
+																"time-entries"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Get Time Entries By User Id",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"id": "5274d142-a23b-4971-9714-98e166ab7f61",
+																"exec": [
+																	"tests[\"Status code is 200\"] = responseCode.code === 200;"
+																],
+																"type": "text/javascript"
+															}
+														}
+													],
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"url": {
+															"raw": "{{timesheets-server}}/time-entries?userId={{userId}}",
+															"host": [
+																"{{timesheets-server}}"
+															],
+															"path": [
+																"time-entries"
+															],
+															"query": [
+																{
+																	"key": "userId",
+																	"value": "{{userId}}"
+																}
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										}
+									],
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "cbbd4907-7ccc-4841-a03b-d565ebc0905f",
+												"type": "text/javascript",
+												"exec": [
+													""
+												]
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "41c8aa00-8168-493e-a13b-c3f53f401037",
+												"type": "text/javascript",
+												"exec": [
+													""
+												]
+											}
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Simulating Production",
+									"item": [
+										{
+											"name": "Monitor your things",
+											"item": [
+												{
+													"name": "Registration Server Health",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/actuator/health",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"health"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Timesheets Server Health",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"url": {
+															"raw": "{{timesheets-server}}/actuator/health",
+															"host": [
+																"{{timesheets-server}}"
+															],
+															"path": [
+																"actuator",
+																"health"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Timesheets Controller Latency",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"url": {
+															"raw": "{{timesheets-server}}/actuator/metrics/timesheets.controller.create.timer",
+															"host": [
+																"{{timesheets-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"timesheets.controller.create.timer"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Timesheets Controller Exception Count",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"url": {
+															"raw": "{{timesheets-server}}/actuator/metrics/timesheets.controller.exception.count",
+															"host": [
+																"{{timesheets-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"timesheets.controller.exception.count"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Project Controller Latency",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/actuator/metrics/project.controller.get.timer",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"project.controller.get.timer"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Project Controller Exception Count",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/actuator/metrics/project.controller.exception.count",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"project.controller.exception.count"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										},
+										{
+											"name": "Simulate increased latency",
+											"item": [
+												{
+													"name": "Configure Increased Latency Assault",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1100,\n    \"latencyRangeEnd\": 1200,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Project Controller Latency",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/actuator/metrics/project.controller.get.timer",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"project.controller.get.timer"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Project Controller Exception Count",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/actuator/metrics/project.controller.exception.count",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"project.controller.exception.count"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										},
+										{
+											"name": "Simulate exceptions",
+											"item": [
+												{
+													"name": "Configure Exception Assault",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1000,\n    \"latencyRangeEnd\": 3000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": true,\n    \"exception\": {\n        \"type\": \"io.pivotal.pal.tracker.projects.controller.exceptions.ProjectControllerFatalException\"\n    }\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Project Controller Latency",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/actuator/metrics/project.controller.get.timer",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"project.controller.get.timer"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Project Controller Exception Count",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/actuator/metrics/project.controller.exception.count",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"project.controller.exception.count"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Registration Server Health",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/actuator/health",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"health"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										},
+										{
+											"name": "Recover your application",
+											"item": [
+												{
+													"name": "Configure Baseline Latency Assault",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 10,\n    \"latencyRangeEnd\": 25,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Recover Project Controller",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1100,\n    \"latencyRangeEnd\": 120,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/project-controller-status",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"project-controller-status"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Registration Server Health",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/actuator/health",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"health"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Project Controller Latency",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/actuator/metrics/project.controller.get.timer",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"project.controller.get.timer"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Project Controller Exception Count",
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{registration-server}}/actuator/metrics/project.controller.exception.count",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"project.controller.exception.count"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Service Discovery and Client Load Balancing",
+							"item": [
+								{
+									"name": "Eureka Server REST Operations",
+									"item": [
+										{
+											"name": "Register New Instance",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"instance\": {\n        \"hostName\": \"localhost\",\n        \"app\": \"hello-world\",\n        \"ipAddr\": \"127.0.0.1\",\n        \"vipAddress\": \"hello-world\",\n        \"secureVipAddress\": \"hello-world\",\n        \"status\": \"UP\",\n        \"port\": {\n            \"$\": \"9000\",\n            \"@enabled\": \"true\"\n        },\n        \"securePort\": {\n            \"$\": \"9000\",\n            \"@enabled\": \"false\"\n        },\n        \"homePageUrl\": \"http://localhost:9000/\",\n        \"statusPageUrl\": \"http://localhost:9000/info\",\n        \"healthCheckUrl\": \"http://localhost:9000/health\",\n        \"dataCenterInfo\": {\n            \"@class\": \"com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo\",\n            \"name\": \"MyOwn\"\n        }\n    }\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:8761/eureka/apps/hello-world",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8761",
+													"path": [
+														"eureka",
+														"apps",
+														"hello-world"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Fetch Instances",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:8761/eureka/apps",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8761",
+													"path": [
+														"eureka",
+														"apps"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Renew Instance",
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:8761/eureka/apps/HELLO-WORLD/localhost",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8761",
+													"path": [
+														"eureka",
+														"apps",
+														"HELLO-WORLD",
+														"localhost"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "De-register Instance",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:8761/eureka/apps/HELLO-WORLD/localhost",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8761",
+													"path": [
+														"eureka",
+														"apps",
+														"HELLO-WORLD",
+														"localhost"
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Client Load Balancing",
+									"item": [
+										{
+											"name": "Create and Verify Time Entry",
+											"item": [
+												{
+													"name": "Add New Time Entry",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"id": "7be4977d-eda5-4b68-b2c4-f656a8b718cc",
+																"exec": [
+																	"var jsonData = JSON.parse(responseBody);",
+																	"postman.setEnvironmentVariable(\"timeEntryId\", jsonData.id);",
+																	"",
+																	"tests[\"timeEntryId is valid\"] = jsonData.timeEntryId !== null;",
+																	"tests[\"Status code is 201\"] = responseCode.code === 201;"
+																],
+																"type": "text/javascript"
+															}
+														}
+													],
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\"projectId\": 1, \"userId\": 1, \"date\": \"2015-05-17\", \"hours\": 6}"
+														},
+														"url": {
+															"raw": "{{timesheets-server}}/time-entries",
+															"host": [
+																"{{timesheets-server}}"
+															],
+															"path": [
+																"time-entries"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Get Time Entries By User Id",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"id": "5274d142-a23b-4971-9714-98e166ab7f61",
+																"exec": [
+																	"tests[\"Status code is 200\"] = responseCode.code === 200;"
+																],
+																"type": "text/javascript"
+															}
+														}
+													],
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"url": {
+															"raw": "{{timesheets-server}}/time-entries?userId=1",
+															"host": [
+																"{{timesheets-server}}"
+															],
+															"path": [
+																"time-entries"
+															],
+															"query": [
+																{
+																	"key": "userId",
+																	"value": "1"
+																}
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										},
+										{
+											"name": "Verify Client Load Balancing",
+											"item": [
+												{
+													"name": "Registration Server Instance 1 Http Requests",
+													"request": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{registration-server}}/actuator/metrics/http.server.requests",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"http.server.requests"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Registration Server Instance 2 Http Requests",
+													"request": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{registration-server-2}}/actuator/metrics/http.server.requests",
+															"host": [
+																"{{registration-server-2}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"http.server.requests"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Configurable Load Balancing Algorithm",
+									"item": [
+										{
+											"name": "Configure Increased Latency Assault on 2nd Registration Server",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"name": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 999,\n    \"latencyRangeEnd\": 1000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+													"host": [
+														"{{registration-server}}"
+													],
+													"path": [
+														"actuator",
+														"chaosmonkey",
+														"assaults"
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "External Configuration and Distributed Trace",
+							"item": [
+								{
+									"name": "Config Server",
+									"item": [
+										{
+											"name": "Implement and run a Config Server",
+											"item": [
+												{
+													"name": "Fetch Timesheet Server Properties",
+													"request": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "http://localhost:8888/timesheets-server.properties",
+															"protocol": "http",
+															"host": [
+																"localhost"
+															],
+															"port": "8888",
+															"path": [
+																"timesheets-server.properties"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										},
+										{
+											"name": "Create Time Entry",
+											"item": [
+												{
+													"name": "Add New Time Entry",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"id": "7be4977d-eda5-4b68-b2c4-f656a8b718cc",
+																"exec": [
+																	"var jsonData = JSON.parse(responseBody);",
+																	"postman.setEnvironmentVariable(\"timeEntryId\", jsonData.id);",
+																	"",
+																	"tests[\"timeEntryId is valid\"] = jsonData.timeEntryId !== null;",
+																	"tests[\"Status code is 201\"] = responseCode.code === 201;"
+																],
+																"type": "text/javascript"
+															}
+														}
+													],
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\"projectId\": 1, \"userId\": 1, \"date\": \"2015-05-17\", \"hours\": 6}"
+														},
+														"url": {
+															"raw": "{{timesheets-server}}/time-entries",
+															"host": [
+																"{{timesheets-server}}"
+															],
+															"path": [
+																"time-entries"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Dynamically Refresh Application Configuration",
+									"item": [
+										{
+											"name": "Add New Time Entry",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "7be4977d-eda5-4b68-b2c4-f656a8b718cc",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"postman.setEnvironmentVariable(\"timeEntryId\", jsonData.id);",
+															"",
+															"tests[\"timeEntryId is valid\"] = jsonData.timeEntryId !== null;",
+															"tests[\"Status code is 201\"] = responseCode.code === 201;"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\"projectId\": 1, \"userId\": 1, \"date\": \"2015-05-17\", \"hours\": 6}"
+												},
+												"url": {
+													"raw": "{{timesheets-server}}/time-entries",
+													"host": [
+														"{{timesheets-server}}"
+													],
+													"path": [
+														"time-entries"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Refresh the timesheets-server environment:",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{timesheets-server}}/actuator/refresh",
+													"host": [
+														"{{timesheets-server}}"
+													],
+													"path": [
+														"actuator",
+														"refresh"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Verify timesheets-server environment",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{timesheets-server}}/actuator/env",
+													"host": [
+														"{{timesheets-server}}"
+													],
+													"path": [
+														"actuator",
+														"env"
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Distributed Updates",
+									"item": [
+										{
+											"name": "Refresh timesheets-server",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{timesheets-server}}/actuator/refresh",
+													"host": [
+														"{{timesheets-server}}"
+													],
+													"path": [
+														"actuator",
+														"refresh"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Verify timesheets-server environment",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{timesheets-server}}/actuator/env",
+													"host": [
+														"{{timesheets-server}}"
+													],
+													"path": [
+														"actuator",
+														"env"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Verify timesheets-server-2 environment",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{timesheets-server-2}}/actuator/env",
+													"host": [
+														"{{timesheets-server-2}}"
+													],
+													"path": [
+														"actuator",
+														"env"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Bus refresh timesheets-server",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{timesheets-server}}/actuator/bus-refresh",
+													"host": [
+														"{{timesheets-server}}"
+													],
+													"path": [
+														"actuator",
+														"bus-refresh"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Bus refresh timesheets-server filtered",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"url": {
+													"raw": "{{timesheets-server}}/actuator/bus-refresh/timesheets-server:**",
+													"host": [
+														"{{timesheets-server}}"
+													],
+													"path": [
+														"actuator",
+														"bus-refresh",
+														"timesheets-server:**"
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Fault Tolerance",
+					"item": [
+						{
+							"name": "Health Check and Exceptions",
+							"item": [
+								{
+									"name": "Eureka Client Health Check",
+									"item": [
+										{
+											"name": "Verify Health Check behavior",
+											"item": [
+												{
+													"name": "Force registration-server to DOWN state",
+													"request": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{registration-server}}/actuator/project-controller-status",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"project-controller-status"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Recover Project Controller",
+													"request": {
+														"method": "POST",
+														"header": [],
+														"url": {
+															"raw": "{{registration-server}}/actuator/project-controller-status",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"project-controller-status"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										},
+										{
+											"name": "Verify Handshaking behavior under load",
+											"item": [
+												{
+													"name": "Induce Fatal Runtime exceptions",
+													"item": [
+														{
+															"name": "Configure Fatal Exception assault on registration-server",
+															"request": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"name": "Content-Type",
+																		"value": "application/json",
+																		"type": "text"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1000,\n    \"latencyRangeEnd\": 3000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": true,\n    \"exception\": {\n        \"type\": \"io.pivotal.pal.tracker.projects.controller.exceptions.ProjectControllerFatalException\"\n    }\n}"
+																},
+																"url": {
+																	"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"chaosmonkey",
+																		"assaults"
+																	]
+																}
+															},
+															"response": []
+														}
+													],
+													"protocolProfileBehavior": {},
+													"_postman_isSubFolder": true
+												},
+												{
+													"name": "Recover registration-server",
+													"item": [
+														{
+															"name": "Configure Baseline Latency Assault",
+															"request": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"name": "Content-Type",
+																		"type": "text",
+																		"value": "application/json"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 10,\n    \"latencyRangeEnd\": 25,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+																},
+																"url": {
+																	"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"chaosmonkey",
+																		"assaults"
+																	]
+																}
+															},
+															"response": []
+														},
+														{
+															"name": "Recover Project Controller",
+															"request": {
+																"method": "POST",
+																"header": [],
+																"url": {
+																	"raw": "{{registration-server}}/actuator/project-controller-status",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"project-controller-status"
+																	]
+																}
+															},
+															"response": []
+														}
+													],
+													"protocolProfileBehavior": {},
+													"_postman_isSubFolder": true
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Load Balancing Client Liveness Check",
+									"item": [
+										{
+											"name": "Verify Health Check behavior",
+											"item": [
+												{
+													"name": "Bootstrap Load Balance client with initial request",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"id": "7be4977d-eda5-4b68-b2c4-f656a8b718cc",
+																"exec": [
+																	"var jsonData = JSON.parse(responseBody);",
+																	"postman.setEnvironmentVariable(\"timeEntryId\", jsonData.id);",
+																	"",
+																	"tests[\"timeEntryId is valid\"] = jsonData.timeEntryId !== null;",
+																	"tests[\"Status code is 201\"] = responseCode.code === 201;"
+																],
+																"type": "text/javascript"
+															}
+														}
+													],
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json",
+																"type": "text"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\"projectId\": 1, \"userId\": 1, \"date\": \"2015-05-17\", \"hours\": 6}"
+														},
+														"url": {
+															"raw": "{{timesheets-server}}/time-entries",
+															"host": [
+																"{{timesheets-server}}"
+															],
+															"path": [
+																"time-entries"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Force registration-server to DOWN state",
+													"request": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "{{registration-server}}/actuator/project-controller-status",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"project-controller-status"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Recover Project Controller",
+													"request": {
+														"method": "POST",
+														"header": [],
+														"url": {
+															"raw": "{{registration-server}}/actuator/project-controller-status",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"project-controller-status"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										},
+										{
+											"name": "Verify Handshaking behavior under load",
+											"item": [
+												{
+													"name": "Induce Fatal Runtime exceptions",
+													"item": [
+														{
+															"name": "Configure Fatal Exception assault on registration-server",
+															"request": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"name": "Content-Type",
+																		"value": "application/json",
+																		"type": "text"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1000,\n    \"latencyRangeEnd\": 3000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": true,\n    \"exception\": {\n        \"type\": \"io.pivotal.pal.tracker.projects.controller.exceptions.ProjectControllerFatalException\"\n    }\n}"
+																},
+																"url": {
+																	"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"chaosmonkey",
+																		"assaults"
+																	]
+																}
+															},
+															"response": []
+														}
+													],
+													"protocolProfileBehavior": {},
+													"_postman_isSubFolder": true
+												},
+												{
+													"name": "Recover registration-server",
+													"item": [
+														{
+															"name": "Configure Baseline Latency Assault",
+															"request": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"name": "Content-Type",
+																		"type": "text",
+																		"value": "application/json"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 10,\n    \"latencyRangeEnd\": 25,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+																},
+																"url": {
+																	"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"chaosmonkey",
+																		"assaults"
+																	]
+																}
+															},
+															"response": []
+														},
+														{
+															"name": "Recover Project Controller",
+															"request": {
+																"method": "POST",
+																"header": [],
+																"url": {
+																	"raw": "{{registration-server}}/actuator/project-controller-status",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"project-controller-status"
+																	]
+																}
+															},
+															"response": []
+														}
+													],
+													"protocolProfileBehavior": {},
+													"_postman_isSubFolder": true
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Exception Handling with Hystrix",
+									"item": [
+										{
+											"name": "Verify Hystrix Behavior",
+											"item": [
+												{
+													"name": "Verify project cache hits",
+													"request": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{timesheets-server}}/actuator/metrics/timesheets.projectclient.cache.hit.count",
+															"host": [
+																"{{timesheets-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"timesheets.projectclient.cache.hit.count"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Retry, Backoff and Timeouts",
+							"item": [
+								{
+									"name": "Retry with Load Balancing Client ",
+									"item": [
+										{
+											"name": "Monitor registration-server-1 http requests",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{registration-server}}/actuator/metrics/http.server.requests",
+													"host": [
+														"{{registration-server}}"
+													],
+													"path": [
+														"actuator",
+														"metrics",
+														"http.server.requests"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Monitor registration-server-2 http requests",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{registration-server-2}}/actuator/metrics/http.server.requests",
+													"host": [
+														"{{registration-server-2}}"
+													],
+													"path": [
+														"actuator",
+														"metrics",
+														"http.server.requests"
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Slow Requests",
+									"item": [
+										{
+											"name": "Demonstrate a Healthy Baseline",
+											"item": [
+												{
+													"name": "Monitor Timesheets Server",
+													"item": [
+														{
+															"name": "Timesheets Server Tomcat Threads",
+															"request": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{timesheets-server}}/actuator/metrics/tomcat.threads.current",
+																	"host": [
+																		"{{timesheets-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"metrics",
+																		"tomcat.threads.current"
+																	]
+																}
+															},
+															"response": []
+														},
+														{
+															"name": "Timesheets Controller Get Latency",
+															"request": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{timesheets-server}}/actuator/metrics/timesheets.controller.create.timer",
+																	"host": [
+																		"{{timesheets-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"metrics",
+																		"timesheets.controller.create.timer"
+																	]
+																}
+															},
+															"response": []
+														}
+													],
+													"protocolProfileBehavior": {},
+													"_postman_isSubFolder": true
+												},
+												{
+													"name": "Monitor Registration Server",
+													"item": [
+														{
+															"name": "Registration Server Tomcat Threads",
+															"request": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{registration-server}}/actuator/metrics/tomcat.threads.current",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"metrics",
+																		"tomcat.threads.current"
+																	]
+																}
+															},
+															"response": []
+														},
+														{
+															"name": "Project Controller Get Latency",
+															"request": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{registration-server}}/actuator/metrics/project.controller.create.timer",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"metrics",
+																		"project.controller.create.timer"
+																	]
+																}
+															},
+															"response": []
+														}
+													],
+													"protocolProfileBehavior": {},
+													"_postman_isSubFolder": true
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										},
+										{
+											"name": "Demonstrate a Hung Load Test and Cascading Failures",
+											"item": [
+												{
+													"name": "Set assault to hanging threads",
+													"item": [
+														{
+															"name": "Configure Hanging Thread Assault",
+															"request": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"name": "Content-Type",
+																		"type": "text",
+																		"value": "application/json"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 99999,\n    \"latencyRangeEnd\": 100000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+																},
+																"url": {
+																	"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"chaosmonkey",
+																		"assaults"
+																	]
+																}
+															},
+															"response": []
+														}
+													],
+													"protocolProfileBehavior": {},
+													"_postman_isSubFolder": true
+												},
+												{
+													"name": "Monitor Timesheets Server",
+													"item": [
+														{
+															"name": "Timesheets Server Http Requests",
+															"request": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{timesheets-server}}/actuator/metrics/http.server.requests",
+																	"host": [
+																		"{{timesheets-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"metrics",
+																		"http.server.requests"
+																	]
+																}
+															},
+															"response": []
+														},
+														{
+															"name": "Timesheets Server Tomcat Threads",
+															"request": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{timesheets-server}}/actuator/metrics/tomcat.threads.current",
+																	"host": [
+																		"{{timesheets-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"metrics",
+																		"tomcat.threads.current"
+																	]
+																}
+															},
+															"response": []
+														}
+													],
+													"protocolProfileBehavior": {},
+													"_postman_isSubFolder": true
+												},
+												{
+													"name": "Monitor Registration Server",
+													"item": [
+														{
+															"name": "Registration Server Http Requests",
+															"request": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{registration-server}}/actuator/metrics/http.server.requests",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"metrics",
+																		"http.server.requests"
+																	]
+																}
+															},
+															"response": []
+														},
+														{
+															"name": "Registration Server Tomcat Threads",
+															"request": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{registration-server}}/actuator/metrics/tomcat.threads.current",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"metrics",
+																		"tomcat.threads.current"
+																	]
+																}
+															},
+															"response": []
+														}
+													],
+													"protocolProfileBehavior": {},
+													"_postman_isSubFolder": true
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Socket Timeouts",
+									"item": [
+										{
+											"name": "Verify timeout behavior",
+											"item": [
+												{
+													"name": "Set assault to hanging threads",
+													"item": [
+														{
+															"name": "Configure Hanging Thread Assault",
+															"request": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"name": "Content-Type",
+																		"type": "text",
+																		"value": "application/json"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 99999,\n    \"latencyRangeEnd\": 100000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+																},
+																"url": {
+																	"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"chaosmonkey",
+																		"assaults"
+																	]
+																}
+															},
+															"response": []
+														}
+													],
+													"protocolProfileBehavior": {},
+													"_postman_isSubFolder": true
+												},
+												{
+													"name": "Monitor Timesheets Server",
+													"item": [
+														{
+															"name": "Timesheets Server Tomcat Threads",
+															"request": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{timesheets-server}}/actuator/metrics/tomcat.threads.current",
+																	"host": [
+																		"{{timesheets-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"metrics",
+																		"tomcat.threads.current"
+																	]
+																}
+															},
+															"response": []
+														},
+														{
+															"name": "Timesheets Controller Get Latency",
+															"request": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{timesheets-server}}/actuator/metrics/timesheets.controller.create.timer",
+																	"host": [
+																		"{{timesheets-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"metrics",
+																		"timesheets.controller.create.timer"
+																	]
+																}
+															},
+															"response": []
+														}
+													],
+													"protocolProfileBehavior": {},
+													"_postman_isSubFolder": true
+												},
+												{
+													"name": "Monitor Registration Server",
+													"item": [
+														{
+															"name": "Registration Server Tomcat Threads",
+															"request": {
+																"method": "GET",
+																"header": [],
+																"url": {
+																	"raw": "{{registration-server}}/actuator/metrics/tomcat.threads.current",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"metrics",
+																		"tomcat.threads.current"
+																	]
+																}
+															},
+															"response": []
+														}
+													],
+													"protocolProfileBehavior": {},
+													"_postman_isSubFolder": true
+												},
+												{
+													"name": "Recover Registration Server",
+													"item": [
+														{
+															"name": "Configure Baseline Latency Assault",
+															"request": {
+																"method": "POST",
+																"header": [
+																	{
+																		"key": "Content-Type",
+																		"name": "Content-Type",
+																		"type": "text",
+																		"value": "application/json"
+																	}
+																],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 10,\n    \"latencyRangeEnd\": 25,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+																},
+																"url": {
+																	"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+																	"host": [
+																		"{{registration-server}}"
+																	],
+																	"path": [
+																		"actuator",
+																		"chaosmonkey",
+																		"assaults"
+																	]
+																}
+															},
+															"response": []
+														}
+													],
+													"protocolProfileBehavior": {},
+													"_postman_isSubFolder": true
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Timeouts with Hystrix",
+									"item": [
+										{
+											"name": "Verify Walkaway Timeout Behavior",
+											"item": [
+												{
+													"name": "Configure Latency Assault above timeout threshold",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1000,\n    \"latencyRangeEnd\": 2000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Configure Latency Assault below timeout threshold",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 250,\n    \"latencyRangeEnd\": 350,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Fail-fast and Retry with Spring Cloud Config Server",
+									"item": [
+										{
+											"name": "Create Time Entry",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "7be4977d-eda5-4b68-b2c4-f656a8b718cc",
+														"exec": [
+															"var jsonData = JSON.parse(responseBody);",
+															"postman.setEnvironmentVariable(\"timeEntryId\", jsonData.id);",
+															"",
+															"tests[\"timeEntryId is valid\"] = jsonData.timeEntryId !== null;",
+															"tests[\"Status code is 201\"] = responseCode.code === 201;"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\"projectId\": 1, \"userId\": 1, \"date\": \"2015-05-17\", \"hours\": 6}"
+												},
+												"url": {
+													"raw": "{{timesheets-server}}/time-entries",
+													"host": [
+														"{{timesheets-server}}"
+													],
+													"path": [
+														"time-entries"
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Bulkheads and Circuit Breaker",
+							"item": [
+								{
+									"name": "Bulkheads without Thread Pools",
+									"item": [
+										{
+											"name": "Demonstrate Rejections",
+											"item": [
+												{
+													"name": "Configure High Latency Assault",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1100,\n    \"latencyRangeEnd\": 1200,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Configure Baseline Latency Assault",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 10,\n    \"latencyRangeEnd\": 25,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										},
+										{
+											"name": "Using Semaphores with Trusted Client",
+											"item": [
+												{
+													"name": "Configure Hanging Thread Assault",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 99999,\n    \"latencyRangeEnd\": 100000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Registration Server Tomcat Threads",
+													"request": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{registration-server}}/actuator/metrics/tomcat.threads.current",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"tomcat.threads.current"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Configure Baseline Latency Assault",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 10,\n    \"latencyRangeEnd\": 25,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Bulkheads with Thread Pools",
+									"item": [
+										{
+											"name": "Demonstrate Rejections",
+											"item": [
+												{
+													"name": "Configure High Latency Assault",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 1100,\n    \"latencyRangeEnd\": 1200,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Configure Baseline Latency Assault",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 10,\n    \"latencyRangeEnd\": 25,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										},
+										{
+											"name": "Using Threads with Untrusted Client",
+											"item": [
+												{
+													"name": "Configure Hanging Thread Assault",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 99999,\n    \"latencyRangeEnd\": 100000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Registration Server Tomcat Threads",
+													"request": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{registration-server}}/actuator/metrics/tomcat.threads.current",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"tomcat.threads.current"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Configure Baseline Latency Assault",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 10,\n    \"latencyRangeEnd\": 25,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								},
+								{
+									"name": "Circuit Breaker with Hystrix",
+									"item": [
+										{
+											"name": "Demonstrate the Circuit Breaker",
+											"item": [
+												{
+													"name": "Configure Hanging Thread Assault",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 99999,\n    \"latencyRangeEnd\": 100000,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Registration Server Tomcat Threads",
+													"request": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{registration-server}}/actuator/metrics/tomcat.threads.current",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"metrics",
+																"tomcat.threads.current"
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Configure Baseline Latency Assault",
+													"request": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"name": "Content-Type",
+																"type": "text",
+																"value": "application/json"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n    \"level\": 1,\n    \"latencyRangeStart\": 10,\n    \"latencyRangeEnd\": 25,\n    \"latencyActive\": true,\n    \"killApplicationActive\": false,\n    \"exceptionsActive\": false\n}"
+														},
+														"url": {
+															"raw": "{{registration-server}}/actuator/chaosmonkey/assaults",
+															"host": [
+																"{{registration-server}}"
+															],
+															"path": [
+																"actuator",
+																"chaosmonkey",
+																"assaults"
+															]
+														}
+													},
+													"response": []
+												}
+											],
+											"protocolProfileBehavior": {},
+											"_postman_isSubFolder": true
+										}
+									],
+									"protocolProfileBehavior": {},
+									"_postman_isSubFolder": true
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

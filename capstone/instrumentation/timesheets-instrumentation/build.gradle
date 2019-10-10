@@ -1,0 +1,6 @@
+dependencies {
+    implementation project (":components:timesheets")
+    implementation project (":instrumentation:instrumentation-support")
+    implementation("com.netflix.ribbon:ribbon-loadbalancer:$ribbonVersion")
+    implementation("com.netflix.ribbon:ribbon-httpclient:$ribbonVersion")
+}

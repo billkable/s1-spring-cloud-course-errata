@@ -1,0 +1,8 @@
+apply from: "../server.gradle"
+
+dependencies {
+    implementation project(':components:accounts')
+    implementation project(':components:users')
+    implementation project(':components:projects')
+    implementation project(':instrumentation:projects-instrumentation')
+}

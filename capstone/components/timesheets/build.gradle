@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(':components:rest-support')
+    implementation "com.netflix.hystrix:hystrix-javanica:$hystrixJavanicaVersion"
+}
+

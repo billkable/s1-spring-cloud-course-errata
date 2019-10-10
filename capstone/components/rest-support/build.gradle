@@ -1,0 +1,9 @@
+dependencies {
+    api "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
+    api "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    api "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+    api "org.springframework.boot:spring-boot:$springBootVersion"
+    implementation "org.springframework.cloud:spring-cloud-commons:$springCloudCommonsVersion"
+    api "org.springframework:spring-web:$springVersion"
+    api "org.springframework:spring-context:$springVersion"
+}
