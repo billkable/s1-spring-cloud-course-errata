@@ -39,4 +39,5 @@ scrape_configs:
 
     static_configs:
     # Make sure to configure your local machine IP address
-    - targets: ['172.30.12.9:8083','172.30.12.9:8183','172.30.12.9:8084']
+#    - targets: ['7c599f8ecb92:8084','b92b174b6e03:8083']
+    - targets: ['registration:8083','timesheets:8084']

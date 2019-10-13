@@ -7,11 +7,11 @@ server:
 
 logging:
   level:
-    com.netflix: DEBUG
+    com.netflix: INFO
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: eureka
     preferIpAddress: true
   client:
     registerWithEureka: false

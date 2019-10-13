@@ -1,0 +1,129 @@
+version: "3"
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - ./platform-services/middleware/nginx:/etc/nginx
+    ports:
+      - 8080:80
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - 15671:15671
+      - 15672:15672
+      - 5672:5672
+  config:
+    image: io.pivotal.education/config-server:latest
+    volumes:
+      - ./config:/etc/config
+    ports:
+      - 8888:8888
+    environment:
+      - SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCHLOCATIONS=file:///etc/config
+  eureka:
+    image: io.pivotal.education/eureka-server:latest
+    ports:
+      - 8761:8761
+    depends_on:
+      - config
+    environment:
+      - SPRING_CLOUD_CONFIG_URI=http://config:8888
+      - EUREKA_INSTANCE_HOSTNAME=eureka
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761
+#  eureka2:
+#    image: io.pivotal.education/eureka-server:latest
+#    ports:
+#      - 8762:8762
+#    depends_on:
+#      - config
+#    environment:
+#      - SPRING_CLOUD_CONFIG_URI=http://config:8888
+#      - EUREKA_INSTANCE_HOSTNAME=eureka2
+#      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka1:8761
+  hystrix-dashboard:
+    image: io.pivotal.education/hystrix-dashboard-server:latest
+    ports:
+      - 8085:8085
+    depends_on:
+      - turbine
+  turbine:
+    image: io.pivotal.education/turbine-amqp-server:latest
+    ports:
+      - 8086:8086
+    depends_on:
+      - eureka
+      - rabbitmq
+    environment:
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka:8761/eureka/
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+      - TURBINE_CLUSTERNAMEEXPRESSION=TIMESHEETS
+      - TURBINE_APPCONFIG=TIMESHEETS-SERVER
+      - TURBINE_STREAM_DESTINATION=hystrixStreamOutput
+  zipkin:
+    image: openzipkin/zipkin:latest
+    ports:
+      - 9411:9411
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBIT_URI=amqp://guest:guest@rabbitmq:5672
+  spring-boot-admin:
+    image: io.pivotal.education/spring-boot-admin-server:latest
+    depends_on:
+      - eureka
+    ports:
+      - 8800:8800
+    environment:
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka:8761/eureka/
+  prom:
+    image: quay.io/prometheus/prometheus:v2.0.0
+    volumes:
+      - ./platform-services/monitoring/prometheus-config/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    depends_on:
+      - exporter
+  exporter:
+    image: prom/node-exporter:latest
+    ports:
+      - "9100:9100"
+  #    network_mode: host
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prom
+  registration:
+    image: io.pivotal.education/registration-server
+    ports:
+      - 8100-8101:8083
+    environment:
+      - SPRING_CLOUD_CONFIG_URI=http://config:8888
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka:8761/eureka/
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+    depends_on:
+      - rabbitmq
+      - eureka
+      - spring-boot-admin
+  timesheets:
+    image: io.pivotal.education/timesheets-server
+    ports:
+      - 8200-8201:8084
+    environment:
+      - SPRING_CLOUD_CONFIG_URI=http://config:8888
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka:8761/eureka/
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
+    depends_on:
+      - rabbitmq
+      - eureka
+      - spring-boot-admin

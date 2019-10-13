@@ -1,80 +1,300 @@
-2019-10-10 11:47:04,425 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
-2019-10-10 11:47:04,450 INFO o.a.j.JMeter: Loading user properties from: /usr/local/Cellar/jmeter/5.1.1/libexec/bin/user.properties
-2019-10-10 11:47:04,451 INFO o.a.j.JMeter: Loading system properties from: /usr/local/Cellar/jmeter/5.1.1/libexec/bin/system.properties
-2019-10-10 11:47:04,457 INFO o.a.j.JMeter: Copyright (c) 1998-2019 The Apache Software Foundation
-2019-10-10 11:47:04,457 INFO o.a.j.JMeter: Version 5.1.1 r1855137
-2019-10-10 11:47:04,457 INFO o.a.j.JMeter: java.version=11.0.1
-2019-10-10 11:47:04,457 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
-2019-10-10 11:47:04,457 INFO o.a.j.JMeter: os.name=Mac OS X
-2019-10-10 11:47:04,457 INFO o.a.j.JMeter: os.arch=x86_64
-2019-10-10 11:47:04,457 INFO o.a.j.JMeter: os.version=10.14.6
-2019-10-10 11:47:04,457 INFO o.a.j.JMeter: file.encoding=UTF-8
-2019-10-10 11:47:04,457 INFO o.a.j.JMeter: java.awt.headless=true
-2019-10-10 11:47:04,457 INFO o.a.j.JMeter: Max memory     =1073741824
-2019-10-10 11:47:04,457 INFO o.a.j.JMeter: Available Processors =8
-2019-10-10 11:47:04,464 INFO o.a.j.JMeter: Default Locale=English (EN)
-2019-10-10 11:47:04,465 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
-2019-10-10 11:47:04,465 INFO o.a.j.JMeter: JMeterHome=/usr/local/Cellar/jmeter/5.1.1/libexec
-2019-10-10 11:47:04,465 INFO o.a.j.JMeter: user.dir  =/Users/bkable/workspace/springone/s1-spring-cloud-course-errata/capstone/platform-services/scripts/load-tests/jmeter
-2019-10-10 11:47:04,465 INFO o.a.j.JMeter: PWD       =/Users/bkable/workspace/springone/s1-spring-cloud-course-errata/capstone/platform-services/scripts/load-tests/jmeter
-2019-10-10 11:47:04,476 INFO o.a.j.JMeter: IP: 192.168.128.57 Name: bkablembp FullName: bkablembp
-2019-10-10 11:47:04,481 INFO o.a.j.s.FileServer: Default base='/Users/bkable/workspace/springone/s1-spring-cloud-course-errata/capstone/platform-services/scripts/load-tests/jmeter'
-2019-10-10 11:47:04,483 INFO o.a.j.s.FileServer: Set new base='/Users/bkable/workspace/springone/s1-spring-cloud-course-errata/capstone/platform-services/scripts/load-tests/jmeter'
-2019-10-10 11:47:04,620 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
-2019-10-10 11:47:04,641 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
-2019-10-10 11:47:04,643 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
-2019-10-10 11:47:04,646 INFO o.a.j.s.SaveService: Loading file: CreateTimeEntryTest.jmx
-2019-10-10 11:47:04,692 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2019-10-10 11:47:04,692 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2019-10-10 11:47:04,692 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2019-10-10 11:47:04,692 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2019-10-10 11:47:04,692 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
-2019-10-10 11:47:04,692 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
-2019-10-10 11:47:04,712 INFO o.a.j.JMeter: Creating summariser <summary>
-2019-10-10 11:47:04,717 INFO o.a.j.e.StandardJMeterEngine: Running the test!
-2019-10-10 11:47:04,719 INFO o.a.j.s.SampleEvent: List of sample_variables: []
-2019-10-10 11:47:04,719 INFO o.a.j.s.SampleEvent: List of sample_variables: []
-2019-10-10 11:47:04,724 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
-2019-10-10 11:47:04,724 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
-2019-10-10 11:47:04,977 INFO o.a.j.JMeter: Running test (1570726024977)
-2019-10-10 11:47:04,989 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
-2019-10-10 11:47:04,990 INFO o.a.j.e.StandardJMeterEngine: Starting 20 threads for group Thread Group.
-2019-10-10 11:47:04,990 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
-2019-10-10 11:47:04,990 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=20 ramp-up=20 delayedStart=false
-2019-10-10 11:47:04,997 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
-2019-10-10 11:47:05,005 INFO o.a.j.t.ThreadGroup: Started thread group number 1
-2019-10-10 11:47:05,006 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
-2019-10-10 11:47:05,022 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = bkablembp
-2019-10-10 11:47:05,029 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
-2019-10-10 11:47:05,030 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
-2019-10-10 11:47:05,031 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
-2019-10-10 11:47:05,031 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
-2019-10-10 11:47:05,031 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
-2019-10-10 11:47:05,817 INFO o.a.j.r.Summariser: summary +      1 in 00:00:01 =    1.2/s Avg:   719 Min:   719 Max:   719 Err:     0 (0.00%) Active: 1 Started: 1 Finished: 0
-2019-10-10 11:47:05,823 INFO o.a.j.u.JsseSSLManager: Using default SSL protocol: TLS
-2019-10-10 11:47:05,823 INFO o.a.j.u.JsseSSLManager: SSL session context: per-thread
-2019-10-10 11:47:05,996 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-2
-2019-10-10 11:47:06,995 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-3
-2019-10-10 11:47:07,996 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-4
-2019-10-10 11:47:08,994 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-5
-2019-10-10 11:47:09,992 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-6
-2019-10-10 11:47:10,996 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-7
-2019-10-10 11:47:11,995 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-8
-2019-10-10 11:47:12,994 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-9
-2019-10-10 11:47:13,997 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-10
-2019-10-10 11:47:14,991 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-11
-2019-10-10 11:47:15,995 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-12
-2019-10-10 11:47:16,993 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-13
-2019-10-10 11:47:17,998 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-14
-2019-10-10 11:47:18,991 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-15
-2019-10-10 11:47:19,994 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-16
-2019-10-10 11:47:20,992 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-17
-2019-10-10 11:47:21,995 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-18
-2019-10-10 11:47:22,992 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-19
-2019-10-10 11:47:23,993 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-20
-2019-10-10 11:47:30,043 INFO o.a.j.r.Summariser: summary +    253 in 00:00:24 =   10.4/s Avg:   142 Min:   117 Max:   181 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
-2019-10-10 11:47:30,044 INFO o.a.j.r.Summariser: summary =    254 in 00:00:25 =   10.1/s Avg:   144 Min:   117 Max:   719 Err:     0 (0.00%)
-2019-10-10 11:48:00,017 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   138 Min:   114 Max:   166 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
-2019-10-10 11:48:00,018 INFO o.a.j.r.Summariser: summary =    554 in 00:00:55 =   10.1/s Avg:   141 Min:   114 Max:   719 Err:     0 (0.00%)
-2019-10-10 11:48:09,172 INFO o.a.j.r.ResultCollector: Shutdown hook started
-2019-10-10 11:48:09,172 INFO o.a.j.r.ResultCollector: Shutdown hook ended
+2019-10-12 22:40:30,686 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2019-10-12 22:40:30,710 INFO o.a.j.JMeter: Loading user properties from: /opt/apache-jmeter-5.1.1/bin/user.properties
+2019-10-12 22:40:30,710 INFO o.a.j.JMeter: Loading system properties from: /opt/apache-jmeter-5.1.1/bin/system.properties
+2019-10-12 22:40:30,715 INFO o.a.j.JMeter: Copyright (c) 1998-2019 The Apache Software Foundation
+2019-10-12 22:40:30,715 INFO o.a.j.JMeter: Version 5.1.1 r1855137
+2019-10-12 22:40:30,716 INFO o.a.j.JMeter: java.version=11.0.4
+2019-10-12 22:40:30,716 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2019-10-12 22:40:30,716 INFO o.a.j.JMeter: os.name=Linux
+2019-10-12 22:40:30,716 INFO o.a.j.JMeter: os.arch=amd64
+2019-10-12 22:40:30,716 INFO o.a.j.JMeter: os.version=5.0.0-31-generic
+2019-10-12 22:40:30,716 INFO o.a.j.JMeter: file.encoding=UTF-8
+2019-10-12 22:40:30,716 INFO o.a.j.JMeter: java.awt.headless=true
+2019-10-12 22:40:30,716 INFO o.a.j.JMeter: Max memory     =1073741824
+2019-10-12 22:40:30,716 INFO o.a.j.JMeter: Available Processors =4
+2019-10-12 22:40:30,724 INFO o.a.j.JMeter: Default Locale=English (EN)
+2019-10-12 22:40:30,724 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2019-10-12 22:40:30,724 INFO o.a.j.JMeter: JMeterHome=/opt/apache-jmeter-5.1.1
+2019-10-12 22:40:30,724 INFO o.a.j.JMeter: user.dir  =/home/bkable/workspace/s1-spring-cloud-course-errata/capstone/platform-services/scripts/load-tests/jmeter
+2019-10-12 22:40:30,724 INFO o.a.j.JMeter: PWD       =/home/bkable/workspace/s1-spring-cloud-course-errata/capstone/platform-services/scripts/load-tests/jmeter
+2019-10-12 22:40:30,724 INFO o.a.j.JMeter: IP: 127.0.1.1 Name: pop-os FullName: pop-os.localdomain
+2019-10-12 22:40:30,727 INFO o.a.j.s.FileServer: Default base='/home/bkable/workspace/s1-spring-cloud-course-errata/capstone/platform-services/scripts/load-tests/jmeter'
+2019-10-12 22:40:30,729 INFO o.a.j.s.FileServer: Set new base='/home/bkable/workspace/s1-spring-cloud-course-errata/capstone/platform-services/scripts/load-tests/jmeter'
+2019-10-12 22:40:30,837 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2019-10-12 22:40:30,856 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2019-10-12 22:40:30,860 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2019-10-12 22:40:30,864 INFO o.a.j.s.SaveService: Loading file: CreateTimeEntryTest.jmx
+2019-10-12 22:40:30,902 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2019-10-12 22:40:30,903 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2019-10-12 22:40:30,903 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2019-10-12 22:40:30,903 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2019-10-12 22:40:30,903 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2019-10-12 22:40:30,903 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2019-10-12 22:40:30,918 INFO o.a.j.JMeter: Creating summariser <summary>
+2019-10-12 22:40:30,923 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2019-10-12 22:40:30,924 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2019-10-12 22:40:30,924 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2019-10-12 22:40:30,934 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2019-10-12 22:40:30,934 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2019-10-12 22:40:31,262 INFO o.a.j.JMeter: Running test (1570938031262)
+2019-10-12 22:40:31,286 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : Thread Group
+2019-10-12 22:40:31,286 INFO o.a.j.e.StandardJMeterEngine: Starting 20 threads for group Thread Group.
+2019-10-12 22:40:31,286 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2019-10-12 22:40:31,286 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=20 ramp-up=20 delayedStart=false
+2019-10-12 22:40:31,302 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-1
+2019-10-12 22:40:31,346 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = pop-os
+2019-10-12 22:40:31,351 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2019-10-12 22:40:31,351 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2019-10-12 22:40:31,354 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2019-10-12 22:40:31,355 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2019-10-12 22:40:31,355 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2019-10-12 22:40:31,355 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2019-10-12 22:40:31,355 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2019-10-12 22:40:32,262 INFO o.a.j.r.Summariser: summary +      1 in 00:00:01 =    1.0/s Avg:   845 Min:   845 Max:   845 Err:     0 (0.00%) Active: 1 Started: 1 Finished: 0
+2019-10-12 22:40:32,266 INFO o.a.j.u.JsseSSLManager: Using default SSL protocol: TLS
+2019-10-12 22:40:32,266 INFO o.a.j.u.JsseSSLManager: SSL session context: per-thread
+2019-10-12 22:40:32,298 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-2
+2019-10-12 22:40:33,295 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-3
+2019-10-12 22:40:34,307 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-4
+2019-10-12 22:40:35,307 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-5
+2019-10-12 22:40:36,304 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-6
+2019-10-12 22:40:37,303 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-7
+2019-10-12 22:40:38,293 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-8
+2019-10-12 22:40:39,293 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-9
+2019-10-12 22:40:40,295 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-10
+2019-10-12 22:40:41,289 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-11
+2019-10-12 22:40:42,289 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-12
+2019-10-12 22:40:43,298 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-13
+2019-10-12 22:40:44,295 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-14
+2019-10-12 22:40:45,294 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-15
+2019-10-12 22:40:46,292 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-16
+2019-10-12 22:40:47,289 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-17
+2019-10-12 22:40:48,290 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-18
+2019-10-12 22:40:49,288 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-19
+2019-10-12 22:40:50,290 INFO o.a.j.t.JMeterThread: Thread started: Thread Group 1-20
+2019-10-12 22:41:00,131 INFO o.a.j.r.Summariser: summary +    291 in 00:00:28 =   10.4/s Avg:   138 Min:   109 Max:   197 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:41:00,132 INFO o.a.j.r.Summariser: summary =    292 in 00:00:29 =   10.1/s Avg:   141 Min:   109 Max:   845 Err:     0 (0.00%)
+2019-10-12 22:41:30,122 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   136 Min:   111 Max:   168 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:41:30,124 INFO o.a.j.r.Summariser: summary =    592 in 00:00:59 =   10.1/s Avg:   138 Min:   109 Max:   845 Err:     0 (0.00%)
+2019-10-12 22:42:00,138 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   134 Min:   108 Max:   162 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:42:00,138 INFO o.a.j.r.Summariser: summary =    892 in 00:01:29 =   10.0/s Avg:   137 Min:   108 Max:   845 Err:     0 (0.00%)
+2019-10-12 22:42:30,167 INFO o.a.j.r.Summariser: summary +    301 in 00:00:30 =   10.0/s Avg:    66 Min:     0 Max:   155 Err:   150 (49.83%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:42:30,168 INFO o.a.j.r.Summariser: summary =   1193 in 00:01:59 =   10.0/s Avg:   119 Min:     0 Max:   845 Err:   150 (12.57%)
+2019-10-12 22:43:00,166 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     6 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:43:00,167 INFO o.a.j.r.Summariser: summary =   1493 in 00:02:29 =   10.0/s Avg:    95 Min:     0 Max:   845 Err:   450 (30.14%)
+2019-10-12 22:43:30,167 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     7 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:43:30,167 INFO o.a.j.r.Summariser: summary =   1793 in 00:02:59 =   10.0/s Avg:    79 Min:     0 Max:   845 Err:   750 (41.83%)
+2019-10-12 22:44:00,008 INFO o.a.j.r.Summariser: summary +    299 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     4 Err:   299 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:44:00,015 INFO o.a.j.r.Summariser: summary =   2092 in 00:03:29 =   10.0/s Avg:    68 Min:     0 Max:   845 Err:  1049 (50.14%)
+2019-10-12 22:44:30,166 INFO o.a.j.r.Summariser: summary +    301 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:    54 Err:   301 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:44:30,166 INFO o.a.j.r.Summariser: summary =   2393 in 00:03:59 =   10.0/s Avg:    59 Min:     0 Max:   845 Err:  1350 (56.41%)
+2019-10-12 22:45:00,167 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     2 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:45:00,168 INFO o.a.j.r.Summariser: summary =   2693 in 00:04:29 =   10.0/s Avg:    53 Min:     0 Max:   845 Err:  1650 (61.27%)
+2019-10-12 22:45:30,166 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     2 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:45:30,166 INFO o.a.j.r.Summariser: summary =   2993 in 00:04:59 =   10.0/s Avg:    48 Min:     0 Max:   845 Err:  1950 (65.15%)
+2019-10-12 22:46:00,166 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     1 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:46:00,166 INFO o.a.j.r.Summariser: summary =   3293 in 00:05:29 =   10.0/s Avg:    43 Min:     0 Max:   845 Err:  2250 (68.33%)
+2019-10-12 22:46:30,171 INFO o.a.j.r.Summariser: summary +    289 in 00:00:30 =    9.6/s Avg:    37 Min:     0 Max:  3047 Err:   289 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:46:30,171 INFO o.a.j.r.Summariser: summary =   3582 in 00:05:59 =   10.0/s Avg:    43 Min:     0 Max:  3047 Err:  2539 (70.88%)
+2019-10-12 22:47:00,069 INFO o.a.j.r.Summariser: summary +    310 in 00:00:30 =   10.4/s Avg:    89 Min:    55 Max:  1074 Err:   310 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:47:00,069 INFO o.a.j.r.Summariser: summary =   3892 in 00:06:29 =   10.0/s Avg:    46 Min:     0 Max:  3047 Err:  2849 (73.20%)
+2019-10-12 22:47:30,125 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   134 Min:    55 Max:   271 Err:    27 (9.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:47:30,125 INFO o.a.j.r.Summariser: summary =   4192 in 00:06:59 =   10.0/s Avg:    53 Min:     0 Max:  3047 Err:  2876 (68.61%)
+2019-10-12 22:48:00,147 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   136 Min:   109 Max:   209 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:48:00,152 INFO o.a.j.r.Summariser: summary =   4492 in 00:07:29 =   10.0/s Avg:    58 Min:     0 Max:  3047 Err:  2876 (64.02%)
+2019-10-12 22:48:30,136 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   135 Min:   107 Max:   164 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:48:30,137 INFO o.a.j.r.Summariser: summary =   4792 in 00:07:59 =   10.0/s Avg:    63 Min:     0 Max:  3047 Err:  2876 (60.02%)
+2019-10-12 22:49:00,116 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   110 Max:   164 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:49:00,117 INFO o.a.j.r.Summariser: summary =   5092 in 00:08:29 =   10.0/s Avg:    67 Min:     0 Max:  3047 Err:  2876 (56.48%)
+2019-10-12 22:49:30,159 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   111 Max:   173 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:49:30,160 INFO o.a.j.r.Summariser: summary =   5392 in 00:08:59 =   10.0/s Avg:    71 Min:     0 Max:  3047 Err:  2876 (53.34%)
+2019-10-12 22:50:00,127 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   109 Max:   170 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:50:00,129 INFO o.a.j.r.Summariser: summary =   5692 in 00:09:29 =   10.0/s Avg:    74 Min:     0 Max:  3047 Err:  2876 (50.53%)
+2019-10-12 22:50:30,149 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   108 Max:   160 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:50:30,150 INFO o.a.j.r.Summariser: summary =   5992 in 00:09:59 =   10.0/s Avg:    77 Min:     0 Max:  3047 Err:  2876 (48.00%)
+2019-10-12 22:51:00,118 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   134 Min:   109 Max:   162 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:51:00,119 INFO o.a.j.r.Summariser: summary =   6292 in 00:10:29 =   10.0/s Avg:    80 Min:     0 Max:  3047 Err:  2876 (45.71%)
+2019-10-12 22:51:30,128 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   108 Max:   186 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:51:30,128 INFO o.a.j.r.Summariser: summary =   6592 in 00:10:59 =   10.0/s Avg:    82 Min:     0 Max:  3047 Err:  2876 (43.63%)
+2019-10-12 22:52:00,111 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   111 Max:   159 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:52:00,112 INFO o.a.j.r.Summariser: summary =   6892 in 00:11:29 =   10.0/s Avg:    84 Min:     0 Max:  3047 Err:  2876 (41.73%)
+2019-10-12 22:52:30,148 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   134 Min:   107 Max:   197 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:52:30,148 INFO o.a.j.r.Summariser: summary =   7192 in 00:11:59 =   10.0/s Avg:    86 Min:     0 Max:  3047 Err:  2876 (39.99%)
+2019-10-12 22:53:00,127 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   131 Min:   107 Max:   160 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:53:00,127 INFO o.a.j.r.Summariser: summary =   7492 in 00:12:29 =   10.0/s Avg:    88 Min:     0 Max:  3047 Err:  2876 (38.39%)
+2019-10-12 22:53:30,116 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   110 Max:   161 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:53:30,117 INFO o.a.j.r.Summariser: summary =   7792 in 00:12:59 =   10.0/s Avg:    90 Min:     0 Max:  3047 Err:  2876 (36.91%)
+2019-10-12 22:54:00,145 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   108 Max:   168 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:54:00,146 INFO o.a.j.r.Summariser: summary =   8092 in 00:13:29 =   10.0/s Avg:    91 Min:     0 Max:  3047 Err:  2876 (35.54%)
+2019-10-12 22:54:30,125 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   104 Max:   160 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:54:30,125 INFO o.a.j.r.Summariser: summary =   8392 in 00:13:59 =   10.0/s Avg:    93 Min:     0 Max:  3047 Err:  2876 (34.27%)
+2019-10-12 22:55:00,132 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   107 Max:   160 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:55:00,133 INFO o.a.j.r.Summariser: summary =   8692 in 00:14:29 =   10.0/s Avg:    94 Min:     0 Max:  3047 Err:  2876 (33.09%)
+2019-10-12 22:55:30,117 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   131 Min:   107 Max:   155 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:55:30,118 INFO o.a.j.r.Summariser: summary =   8992 in 00:14:59 =   10.0/s Avg:    96 Min:     0 Max:  3047 Err:  2876 (31.98%)
+2019-10-12 22:56:00,121 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   131 Min:   107 Max:   155 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:56:00,121 INFO o.a.j.r.Summariser: summary =   9292 in 00:15:29 =   10.0/s Avg:    97 Min:     0 Max:  3047 Err:  2876 (30.95%)
+2019-10-12 22:56:30,135 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   130 Min:   105 Max:   154 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:56:30,136 INFO o.a.j.r.Summariser: summary =   9592 in 00:15:59 =   10.0/s Avg:    98 Min:     0 Max:  3047 Err:  2876 (29.98%)
+2019-10-12 22:57:00,133 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   130 Min:   105 Max:   211 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:57:00,133 INFO o.a.j.r.Summariser: summary =   9892 in 00:16:29 =   10.0/s Avg:    99 Min:     0 Max:  3047 Err:  2876 (29.07%)
+2019-10-12 22:57:30,125 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   127 Min:   106 Max:   152 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:57:30,125 INFO o.a.j.r.Summariser: summary =  10192 in 00:16:59 =   10.0/s Avg:   100 Min:     0 Max:  3047 Err:  2876 (28.22%)
+2019-10-12 22:58:00,134 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   129 Min:   104 Max:   151 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:58:00,134 INFO o.a.j.r.Summariser: summary =  10492 in 00:17:29 =   10.0/s Avg:   100 Min:     0 Max:  3047 Err:  2876 (27.41%)
+2019-10-12 22:58:30,166 INFO o.a.j.r.Summariser: summary +    301 in 00:00:30 =   10.0/s Avg:    54 Min:     0 Max:   163 Err:   181 (60.13%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:58:30,167 INFO o.a.j.r.Summariser: summary =  10793 in 00:17:59 =   10.0/s Avg:    99 Min:     0 Max:  3047 Err:  3057 (28.32%)
+2019-10-12 22:59:00,166 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     9 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:59:00,167 INFO o.a.j.r.Summariser: summary =  11093 in 00:18:29 =   10.0/s Avg:    96 Min:     0 Max:  3047 Err:  3357 (30.26%)
+2019-10-12 22:59:30,166 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     2 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 22:59:30,167 INFO o.a.j.r.Summariser: summary =  11393 in 00:18:59 =   10.0/s Avg:    94 Min:     0 Max:  3047 Err:  3657 (32.10%)
+2019-10-12 23:00:00,166 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     8 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:00:00,167 INFO o.a.j.r.Summariser: summary =  11693 in 00:19:29 =   10.0/s Avg:    91 Min:     0 Max:  3047 Err:  3957 (33.84%)
+2019-10-12 23:00:30,166 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     2 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:00:30,166 INFO o.a.j.r.Summariser: summary =  11993 in 00:19:59 =   10.0/s Avg:    89 Min:     0 Max:  3047 Err:  4257 (35.50%)
+2019-10-12 23:01:00,166 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     1 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:01:00,166 INFO o.a.j.r.Summariser: summary =  12293 in 00:20:29 =   10.0/s Avg:    87 Min:     0 Max:  3047 Err:  4557 (37.07%)
+2019-10-12 23:01:30,063 INFO o.a.j.r.Summariser: summary +    299 in 00:00:30 =   10.0/s Avg:    62 Min:     0 Max:  1018 Err:   299 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:01:30,064 INFO o.a.j.r.Summariser: summary =  12592 in 00:20:59 =   10.0/s Avg:    86 Min:     0 Max:  3047 Err:  4856 (38.56%)
+2019-10-12 23:02:00,129 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:    84 Min:    54 Max:   379 Err:   247 (82.33%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:02:00,130 INFO o.a.j.r.Summariser: summary =  12892 in 00:21:29 =   10.0/s Avg:    86 Min:     0 Max:  3047 Err:  5103 (39.58%)
+2019-10-12 23:02:30,128 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   136 Min:   110 Max:   167 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:02:30,129 INFO o.a.j.r.Summariser: summary =  13192 in 00:21:59 =   10.0/s Avg:    87 Min:     0 Max:  3047 Err:  5103 (38.68%)
+2019-10-12 23:03:00,141 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   135 Min:   109 Max:   192 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:03:00,142 INFO o.a.j.r.Summariser: summary =  13492 in 00:22:29 =   10.0/s Avg:    88 Min:     0 Max:  3047 Err:  5103 (37.82%)
+2019-10-12 23:03:30,151 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   134 Min:   109 Max:   161 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:03:30,151 INFO o.a.j.r.Summariser: summary =  13792 in 00:22:59 =   10.0/s Avg:    89 Min:     0 Max:  3047 Err:  5103 (37.00%)
+2019-10-12 23:04:00,124 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   134 Min:   110 Max:   172 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:04:00,125 INFO o.a.j.r.Summariser: summary =  14092 in 00:23:29 =   10.0/s Avg:    90 Min:     0 Max:  3047 Err:  5103 (36.21%)
+2019-10-12 23:04:30,128 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   108 Max:   159 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:04:30,129 INFO o.a.j.r.Summariser: summary =  14392 in 00:23:59 =   10.0/s Avg:    91 Min:     0 Max:  3047 Err:  5103 (35.46%)
+2019-10-12 23:05:00,134 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   110 Max:   173 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:05:00,135 INFO o.a.j.r.Summariser: summary =  14692 in 00:24:29 =   10.0/s Avg:    92 Min:     0 Max:  3047 Err:  5103 (34.73%)
+2019-10-12 23:05:30,112 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   108 Max:   157 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:05:30,113 INFO o.a.j.r.Summariser: summary =  14992 in 00:24:59 =   10.0/s Avg:    93 Min:     0 Max:  3047 Err:  5103 (34.04%)
+2019-10-12 23:06:00,137 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   107 Max:   155 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:06:00,138 INFO o.a.j.r.Summariser: summary =  15292 in 00:25:29 =   10.0/s Avg:    94 Min:     0 Max:  3047 Err:  5103 (33.37%)
+2019-10-12 23:06:30,151 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   107 Max:   159 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:06:30,151 INFO o.a.j.r.Summariser: summary =  15592 in 00:25:59 =   10.0/s Avg:    94 Min:     0 Max:  3047 Err:  5103 (32.73%)
+2019-10-12 23:07:00,121 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   108 Max:   161 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:07:00,121 INFO o.a.j.r.Summariser: summary =  15892 in 00:26:29 =   10.0/s Avg:    95 Min:     0 Max:  3047 Err:  5103 (32.11%)
+2019-10-12 23:07:30,132 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   131 Min:   107 Max:   169 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:07:30,133 INFO o.a.j.r.Summariser: summary =  16192 in 00:26:59 =   10.0/s Avg:    96 Min:     0 Max:  3047 Err:  5103 (31.52%)
+2019-10-12 23:08:00,110 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   131 Min:   106 Max:   155 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:08:00,111 INFO o.a.j.r.Summariser: summary =  16492 in 00:27:29 =   10.0/s Avg:    96 Min:     0 Max:  3047 Err:  5103 (30.94%)
+2019-10-12 23:08:30,144 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   107 Max:   157 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:08:30,145 INFO o.a.j.r.Summariser: summary =  16792 in 00:27:59 =   10.0/s Avg:    97 Min:     0 Max:  3047 Err:  5103 (30.39%)
+2019-10-12 23:09:00,107 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   131 Min:   108 Max:   158 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:09:00,108 INFO o.a.j.r.Summariser: summary =  17092 in 00:28:29 =   10.0/s Avg:    98 Min:     0 Max:  3047 Err:  5103 (29.86%)
+2019-10-12 23:09:30,133 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   107 Max:   189 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:09:30,134 INFO o.a.j.r.Summariser: summary =  17392 in 00:28:59 =   10.0/s Avg:    98 Min:     0 Max:  3047 Err:  5103 (29.34%)
+2019-10-12 23:10:00,137 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   131 Min:   106 Max:   172 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:10:00,137 INFO o.a.j.r.Summariser: summary =  17692 in 00:29:29 =   10.0/s Avg:    99 Min:     0 Max:  3047 Err:  5103 (28.84%)
+2019-10-12 23:10:30,132 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   130 Min:   109 Max:   154 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:10:30,132 INFO o.a.j.r.Summariser: summary =  17992 in 00:29:59 =   10.0/s Avg:    99 Min:     0 Max:  3047 Err:  5103 (28.36%)
+2019-10-12 23:11:00,167 INFO o.a.j.r.Summariser: summary +    301 in 00:00:30 =   10.0/s Avg:    73 Min:     0 Max:   175 Err:   131 (43.52%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:11:00,167 INFO o.a.j.r.Summariser: summary =  18293 in 00:30:29 =   10.0/s Avg:    99 Min:     0 Max:  3047 Err:  5234 (28.61%)
+2019-10-12 23:11:30,165 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     1 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:11:30,166 INFO o.a.j.r.Summariser: summary =  18593 in 00:30:59 =   10.0/s Avg:    97 Min:     0 Max:  3047 Err:  5534 (29.76%)
+2019-10-12 23:12:00,167 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     1 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:12:00,168 INFO o.a.j.r.Summariser: summary =  18893 in 00:31:29 =   10.0/s Avg:    96 Min:     0 Max:  3047 Err:  5834 (30.88%)
+2019-10-12 23:12:30,166 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     2 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:12:30,166 INFO o.a.j.r.Summariser: summary =  19193 in 00:31:59 =   10.0/s Avg:    94 Min:     0 Max:  3047 Err:  6134 (31.96%)
+2019-10-12 23:13:00,166 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     2 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:13:00,166 INFO o.a.j.r.Summariser: summary =  19493 in 00:32:29 =   10.0/s Avg:    93 Min:     0 Max:  3047 Err:  6434 (33.01%)
+2019-10-12 23:13:30,061 INFO o.a.j.r.Summariser: summary +    298 in 00:00:30 =   10.0/s Avg:    50 Min:     0 Max:  3786 Err:   298 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:13:30,062 INFO o.a.j.r.Summariser: summary =  19791 in 00:32:59 =   10.0/s Avg:    92 Min:     0 Max:  3786 Err:  6732 (34.02%)
+2019-10-12 23:14:00,150 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:    73 Min:    54 Max:   284 Err:   287 (95.67%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:14:00,150 INFO o.a.j.r.Summariser: summary =  20091 in 00:33:29 =   10.0/s Avg:    92 Min:     0 Max:  3786 Err:  7019 (34.94%)
+2019-10-12 23:14:30,132 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   136 Min:   113 Max:   175 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:14:30,133 INFO o.a.j.r.Summariser: summary =  20391 in 00:33:59 =   10.0/s Avg:    93 Min:     0 Max:  3786 Err:  7019 (34.42%)
+2019-10-12 23:15:00,124 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   134 Min:   110 Max:   189 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:15:00,124 INFO o.a.j.r.Summariser: summary =  20691 in 00:34:29 =   10.0/s Avg:    93 Min:     0 Max:  3786 Err:  7019 (33.92%)
+2019-10-12 23:15:30,138 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   107 Max:   211 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:15:30,139 INFO o.a.j.r.Summariser: summary =  20991 in 00:34:59 =   10.0/s Avg:    94 Min:     0 Max:  3786 Err:  7019 (33.44%)
+2019-10-12 23:16:00,131 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   107 Max:   184 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:16:00,132 INFO o.a.j.r.Summariser: summary =  21291 in 00:35:29 =   10.0/s Avg:    94 Min:     0 Max:  3786 Err:  7019 (32.97%)
+2019-10-12 23:16:30,137 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   108 Max:   160 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:16:30,137 INFO o.a.j.r.Summariser: summary =  21591 in 00:35:59 =   10.0/s Avg:    95 Min:     0 Max:  3786 Err:  7019 (32.51%)
+2019-10-12 23:17:00,129 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   109 Max:   164 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:17:00,130 INFO o.a.j.r.Summariser: summary =  21891 in 00:36:29 =   10.0/s Avg:    95 Min:     0 Max:  3786 Err:  7019 (32.06%)
+2019-10-12 23:17:30,130 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   111 Max:   160 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:17:30,130 INFO o.a.j.r.Summariser: summary =  22191 in 00:36:59 =   10.0/s Avg:    96 Min:     0 Max:  3786 Err:  7019 (31.63%)
+2019-10-12 23:18:00,134 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   110 Max:   189 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:18:00,135 INFO o.a.j.r.Summariser: summary =  22491 in 00:37:29 =   10.0/s Avg:    96 Min:     0 Max:  3786 Err:  7019 (31.21%)
+2019-10-12 23:18:30,124 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   108 Max:   157 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:18:30,125 INFO o.a.j.r.Summariser: summary =  22791 in 00:37:59 =   10.0/s Avg:    97 Min:     0 Max:  3786 Err:  7019 (30.80%)
+2019-10-12 23:19:00,116 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   107 Max:   163 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:19:00,117 INFO o.a.j.r.Summariser: summary =  23091 in 00:38:29 =   10.0/s Avg:    97 Min:     0 Max:  3786 Err:  7019 (30.40%)
+2019-10-12 23:19:30,140 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   135 Min:   108 Max:   221 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:19:30,141 INFO o.a.j.r.Summariser: summary =  23391 in 00:38:59 =   10.0/s Avg:    98 Min:     0 Max:  3786 Err:  7019 (30.01%)
+2019-10-12 23:20:00,133 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   110 Max:   162 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:20:00,134 INFO o.a.j.r.Summariser: summary =  23691 in 00:39:29 =   10.0/s Avg:    98 Min:     0 Max:  3786 Err:  7019 (29.63%)
+2019-10-12 23:20:30,118 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   110 Max:   157 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:20:30,119 INFO o.a.j.r.Summariser: summary =  23991 in 00:39:59 =   10.0/s Avg:    99 Min:     0 Max:  3786 Err:  7019 (29.26%)
+2019-10-12 23:21:00,130 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   108 Max:   159 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:21:00,130 INFO o.a.j.r.Summariser: summary =  24291 in 00:40:29 =   10.0/s Avg:    99 Min:     0 Max:  3786 Err:  7019 (28.90%)
+2019-10-12 23:21:30,117 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   132 Min:   107 Max:   160 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:21:30,118 INFO o.a.j.r.Summariser: summary =  24591 in 00:40:59 =   10.0/s Avg:    99 Min:     0 Max:  3786 Err:  7019 (28.54%)
+2019-10-12 23:22:00,126 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   106 Max:   190 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:22:00,126 INFO o.a.j.r.Summariser: summary =  24891 in 00:41:29 =   10.0/s Avg:   100 Min:     0 Max:  3786 Err:  7019 (28.20%)
+2019-10-12 23:22:30,146 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   131 Min:   108 Max:   162 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:22:30,147 INFO o.a.j.r.Summariser: summary =  25191 in 00:41:59 =   10.0/s Avg:   100 Min:     0 Max:  3786 Err:  7019 (27.86%)
+2019-10-12 23:23:00,112 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   133 Min:   109 Max:   225 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:23:00,112 INFO o.a.j.r.Summariser: summary =  25491 in 00:42:29 =   10.0/s Avg:   101 Min:     0 Max:  3786 Err:  7019 (27.54%)
+2019-10-12 23:23:30,117 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   129 Min:   106 Max:   154 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:23:30,117 INFO o.a.j.r.Summariser: summary =  25791 in 00:42:59 =   10.0/s Avg:   101 Min:     0 Max:  3786 Err:  7019 (27.21%)
+2019-10-12 23:24:00,106 INFO o.a.j.r.Summariser: summary +    291 in 00:00:30 =    9.7/s Avg:   431 Min:    56 Max:  2288 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:24:00,115 INFO o.a.j.r.Summariser: summary =  26082 in 00:43:29 =   10.0/s Avg:   105 Min:     0 Max:  3786 Err:  7019 (26.91%)
+2019-10-12 23:24:30,031 INFO o.a.j.r.Summariser: summary +    293 in 00:00:30 =    9.8/s Avg:   960 Min:    53 Max:  2369 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:24:30,032 INFO o.a.j.r.Summariser: summary =  26375 in 00:43:59 =   10.0/s Avg:   114 Min:     0 Max:  3786 Err:  7019 (26.61%)
+2019-10-12 23:25:00,042 INFO o.a.j.r.Summariser: summary +    294 in 00:00:30 =    9.8/s Avg:   976 Min:    54 Max:  2613 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:25:00,042 INFO o.a.j.r.Summariser: summary =  26669 in 00:44:29 =   10.0/s Avg:   124 Min:     0 Max:  3786 Err:  7019 (26.32%)
+2019-10-12 23:25:30,066 INFO o.a.j.r.Summariser: summary +    293 in 00:00:30 =    9.8/s Avg:   992 Min:    55 Max:  2631 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:25:30,070 INFO o.a.j.r.Summariser: summary =  26962 in 00:44:59 =   10.0/s Avg:   133 Min:     0 Max:  3786 Err:  7019 (26.03%)
+2019-10-12 23:26:00,065 INFO o.a.j.r.Summariser: summary +    292 in 00:00:30 =    9.7/s Avg:   987 Min:    54 Max:  2345 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:26:00,065 INFO o.a.j.r.Summariser: summary =  27254 in 00:45:29 =   10.0/s Avg:   142 Min:     0 Max:  3786 Err:  7019 (25.75%)
+2019-10-12 23:26:30,002 INFO o.a.j.r.Summariser: summary +    294 in 00:00:30 =    9.8/s Avg:   992 Min:    53 Max:  2529 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:26:30,003 INFO o.a.j.r.Summariser: summary =  27548 in 00:45:59 =   10.0/s Avg:   151 Min:     0 Max:  3786 Err:  7019 (25.48%)
+2019-10-12 23:27:00,128 INFO o.a.j.r.Summariser: summary +    294 in 00:00:30 =    9.8/s Avg:   994 Min:    54 Max:  2342 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:27:00,129 INFO o.a.j.r.Summariser: summary =  27842 in 00:46:29 =   10.0/s Avg:   160 Min:     0 Max:  3786 Err:  7019 (25.21%)
+2019-10-12 23:27:30,129 INFO o.a.j.r.Summariser: summary +    293 in 00:00:30 =    9.8/s Avg:   981 Min:    57 Max:  2336 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:27:30,130 INFO o.a.j.r.Summariser: summary =  28135 in 00:46:59 =   10.0/s Avg:   169 Min:     0 Max:  3786 Err:  7019 (24.95%)
+2019-10-12 23:28:00,204 INFO o.a.j.r.Summariser: summary +    293 in 00:00:30 =    9.7/s Avg:   984 Min:    55 Max:  2356 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:28:00,204 INFO o.a.j.r.Summariser: summary =  28428 in 00:47:29 =   10.0/s Avg:   177 Min:     0 Max:  3786 Err:  7019 (24.69%)
+2019-10-12 23:28:30,151 INFO o.a.j.r.Summariser: summary +    306 in 00:00:30 =   10.2/s Avg:   408 Min:    54 Max:  2352 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:28:30,152 INFO o.a.j.r.Summariser: summary =  28734 in 00:47:59 =   10.0/s Avg:   180 Min:     0 Max:  3786 Err:  7019 (24.43%)
+2019-10-12 23:29:00,045 INFO o.a.j.r.Summariser: summary +    299 in 00:00:30 =   10.0/s Avg:   108 Min:    67 Max:   153 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:29:00,047 INFO o.a.j.r.Summariser: summary =  29033 in 00:48:29 =   10.0/s Avg:   179 Min:     0 Max:  3786 Err:  7019 (24.18%)
+2019-10-12 23:29:30,160 INFO o.a.j.r.Summariser: summary +    301 in 00:00:30 =   10.0/s Avg:   110 Min:    68 Max:   173 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:29:30,161 INFO o.a.j.r.Summariser: summary =  29334 in 00:48:59 =   10.0/s Avg:   178 Min:     0 Max:  3786 Err:  7019 (23.93%)
+2019-10-12 23:30:00,038 INFO o.a.j.r.Summariser: summary +    299 in 00:00:30 =   10.0/s Avg:   108 Min:    67 Max:   155 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:30:00,038 INFO o.a.j.r.Summariser: summary =  29633 in 00:49:29 =   10.0/s Avg:   177 Min:     0 Max:  3786 Err:  7019 (23.69%)
+2019-10-12 23:30:30,006 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   109 Min:    66 Max:   156 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:30:30,007 INFO o.a.j.r.Summariser: summary =  29933 in 00:49:59 =   10.0/s Avg:   177 Min:     0 Max:  3786 Err:  7019 (23.45%)
+2019-10-12 23:31:00,042 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   108 Min:    68 Max:   155 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:31:00,043 INFO o.a.j.r.Summariser: summary =  30233 in 00:50:29 =   10.0/s Avg:   176 Min:     0 Max:  3786 Err:  7019 (23.22%)
+2019-10-12 23:31:30,021 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:   109 Min:    66 Max:   162 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:31:30,021 INFO o.a.j.r.Summariser: summary =  30533 in 00:50:59 =   10.0/s Avg:   175 Min:     0 Max:  3786 Err:  7019 (22.99%)
+2019-10-12 23:32:00,186 INFO o.a.j.r.Summariser: summary +    301 in 00:00:30 =   10.0/s Avg:   107 Min:    68 Max:   154 Err:     0 (0.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:32:00,186 INFO o.a.j.r.Summariser: summary =  30834 in 00:51:29 =   10.0/s Avg:   175 Min:     0 Max:  3786 Err:  7019 (22.76%)
+2019-10-12 23:32:30,044 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:    96 Min:     0 Max:   155 Err:    35 (11.67%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:32:30,044 INFO o.a.j.r.Summariser: summary =  31134 in 00:51:59 =   10.0/s Avg:   174 Min:     0 Max:  3786 Err:  7054 (22.66%)
+2019-10-12 23:33:00,053 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     2 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:33:00,053 INFO o.a.j.r.Summariser: summary =  31434 in 00:52:29 =   10.0/s Avg:   172 Min:     0 Max:  3786 Err:  7354 (23.40%)
+2019-10-12 23:33:30,043 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:    18 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:33:30,044 INFO o.a.j.r.Summariser: summary =  31734 in 00:52:59 =   10.0/s Avg:   171 Min:     0 Max:  3786 Err:  7654 (24.12%)
+2019-10-12 23:34:00,044 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     1 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:34:00,045 INFO o.a.j.r.Summariser: summary =  32034 in 00:53:29 =   10.0/s Avg:   169 Min:     0 Max:  3786 Err:  7954 (24.83%)
+2019-10-12 23:34:30,044 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     1 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:34:30,044 INFO o.a.j.r.Summariser: summary =  32334 in 00:53:59 =   10.0/s Avg:   167 Min:     0 Max:  3786 Err:  8254 (25.53%)
+2019-10-12 23:35:00,044 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     1 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:35:00,044 INFO o.a.j.r.Summariser: summary =  32634 in 00:54:29 =   10.0/s Avg:   166 Min:     0 Max:  3786 Err:  8554 (26.21%)
+2019-10-12 23:35:30,044 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:    29 Min:     0 Max:  3044 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:35:30,045 INFO o.a.j.r.Summariser: summary =  32934 in 00:54:59 =   10.0/s Avg:   165 Min:     0 Max:  3786 Err:  8854 (26.88%)
+2019-10-12 23:36:00,044 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:    22 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:36:00,044 INFO o.a.j.r.Summariser: summary =  33234 in 00:55:29 =   10.0/s Avg:   163 Min:     0 Max:  3786 Err:  9154 (27.54%)
+2019-10-12 23:36:30,044 INFO o.a.j.r.Summariser: summary +    300 in 00:00:30 =   10.0/s Avg:     0 Min:     0 Max:     1 Err:   300 (100.00%) Active: 20 Started: 20 Finished: 0
+2019-10-12 23:36:30,044 INFO o.a.j.r.Summariser: summary =  33534 in 00:55:59 =   10.0/s Avg:   162 Min:     0 Max:  3786 Err:  9454 (28.19%)
+2019-10-12 23:36:38,916 INFO o.a.j.r.ResultCollector: Shutdown hook started
+2019-10-12 23:36:38,921 INFO o.a.j.r.ResultCollector: Shutdown hook ended

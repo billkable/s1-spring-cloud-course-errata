@@ -10,29 +10,20 @@
         <relativePath>../../..</relativePath>
     </parent>
 
-    <artifactId>eureka-server</artifactId>
+    <artifactId>hystrix-dashboard-server</artifactId>
 
-    <name>eureka-server</name>
-    <description>PAL Tracker Eureka Server</description>
+    <name>hystrix-dashboard-server</name>
+    <description>Hystrix Dashboard Server</description>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
+            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
