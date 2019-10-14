@@ -19,7 +19,7 @@ allprojects {
 
             // Instrumentation and Monitoring Versions
             aspectJVersion = '1.9.4'
-            chaosMonkeyVersion = '2.0.2'
+            chaosMonkeyVersion = '2.1.1'
             micrometerVersion = '1.1.6'
             slf4jVersion = '1.7.28'
             springBootAdminVersion = '2.1.6'

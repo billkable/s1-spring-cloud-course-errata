@@ -36,6 +36,6 @@ ${PROJECT_DIR}/platform-services/scripts/docker-util/wait-for-it.sh -h localhost
 ${PROJECT_DIR}/platform-services/scripts/docker-util/wait-for-it.sh -h localhost -p 8101
 docker-compose start timesheets
 
-${PROJECT_DIR}/platform-services/scripts/docker-util/wait-for-it.sh -h localhost -p 8200
-${PROJECT_DIR}/platform-services/scripts/docker-util/wait-for-it.sh -h localhost -p 8201
+${PROJECT_DIR}/platform-services/scripts/docker-util/wait-for-it.sh -h localhost -p 8200 -t 60
+${PROJECT_DIR}/platform-services/scripts/docker-util/wait-for-it.sh -h localhost -p 8201 -t 60
 docker-compose start nginx

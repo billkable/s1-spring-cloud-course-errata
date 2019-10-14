@@ -25,7 +25,7 @@ docker build -t io.pivotal.education/registration-server .
 cd ${PROJECT_DIR}/applications/timesheets-server
 docker build -t io.pivotal.education/timesheets-server .
 
-docker-compose up --no-start
+docker-compose up --no-start --scale registration=2 --scale timesheets=2
 docker-compose start rabbitmq
 docker-compose exec rabbitmq rabbitmq-plugins enable rabbitmq_tracing
 docker-compose stop rabbitmq
