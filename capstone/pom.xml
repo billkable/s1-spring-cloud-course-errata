@@ -24,7 +24,7 @@
 
         <!-- Testing Component Versions -->
         <assertj.version>3.11.1</assertj.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <mockito.version>2.23.4</mockito.version>
 
         <!-- Instrumentation and Monitoring Versions -->
